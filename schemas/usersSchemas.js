@@ -19,14 +19,9 @@ const currentUserSchema = Joi.object({
   password: Joi.string().required(),
 });
 
-const subscribeUserSchema = Joi.object({
-  subscription: Joi.string().valid("starter", "pro", "business").required(),
-});
-
 module.exports = {
   registerUserSchema,
   loginUserSchema,
   currentUserSchema,
-  subscribeUserSchema,
   reVerificationSchema,
 };
