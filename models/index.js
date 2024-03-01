@@ -1,4 +1,4 @@
-const Contact = require("./contact");
+const Metric = require("./metric");
 const User = require("./user");
 
-module.exports = { Contact, User };
+module.exports = { Metric, User };

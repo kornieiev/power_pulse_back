@@ -20,6 +20,7 @@ const registerUser = async (req, res, next) => {
       password: hashedPassword,
       // subscription: "starter",
       // avatarURL,
+      userMetrics: false,
       verificationToken: verificationCode,
     });
 
@@ -31,6 +32,7 @@ const registerUser = async (req, res, next) => {
       // subscription: "starter",
       // avatarURL,
       verificationToken: verificationCode,
+      userMetrics: "User Data is empty",
     });
   } catch (error) {
     if (error.message.includes("E11000") || error.message.code === 11000) {
