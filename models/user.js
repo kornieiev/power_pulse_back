@@ -28,6 +28,11 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Verify token is required"],
     },
+    userMetrics: {
+      // це поле визначає чи підтвердила людина e-mail
+      type: Boolean,
+      default: false,
+    },
   },
   {
     versionKey: false,
