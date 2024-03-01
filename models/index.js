@@ -1,4 +1,4 @@
-const Contact = require("./contact");
-const User = require("./user");
-
-module.exports = { Contact, User };
+const User = require('./user')
+const DiaryProducts = require('./diaryProduct')
+const DiaryExercises = require('./diaryExercise')
+module.exports = { User, DiaryProducts, DiaryExercises }

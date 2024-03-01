@@ -4,11 +4,11 @@ const diaryRouter = express.Router()
 const { authenticate } = require('../middlewares/authenticate')
 
 const {
-	addProductAndExercises,
 	deleteUserExercises,
 	addUserExercises,
 	addUserProducts,
 	deleteUserProducts,
+	getProductAndExercises,
 } = require('../controllers/diary')
 
 const { validateBody } = require('../helpers')
@@ -35,7 +35,7 @@ diaryRouter.post(
 
 // get product and exercises
 
-diaryRouter.get('/productAndExercises', authenticate, addProductAndExercises)
+diaryRouter.get('/productAndExercises', authenticate, getProductAndExercises)
 
 // delete products
 diaryRouter.delete('/products:/id', authenticate, deleteUserProducts)

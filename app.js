@@ -3,7 +3,7 @@ const morgan = require('morgan') // для логирования HTTP-запр�
 const cors = require('cors') // позволяет браузеру разрешать кросс-доменные запросы
 const mongoose = require('mongoose') // создает подключение к базе данных MongoDB
 const usersRouters = require('./routes/usersRoutes')
-const diaryRouters = require('./routes/diaryRouters')
+const diaryRouters = require('./routes/diaryRoutes')
 require('dotenv').config() // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
 require('colors') // для подсвечивания информации выводимой в консоли
 

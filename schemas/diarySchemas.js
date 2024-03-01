@@ -4,7 +4,7 @@ const UserProductSchema = Joi.object({
 	product: Joi.string().required(),
 	date:
 		Joi.string()
-			.pattern(new RegExp('^[0-9]{2}/[0-9]{2}/[0-9]{4}$'))
+			.pattern(/^\d{2}-\d{2}-\d{4}$/)
 			.required() || date(),
 	amount: Joi.number().min(1).required(),
 	calories: Joi.number().min(1).required(),
@@ -19,7 +19,7 @@ const UserExercisesSchema = Joi.object({
 	exercise: Joi.string().required(),
 	date:
 		Joi.string()
-			.pattern(new RegExp('^[0-9]{2}/[0-9]{2}/[0-9]{4}$'))
+			.pattern(/^\d{2}-\d{2}-\d{4}$/)
 			.required() || date(),
 
 	time: Joi.number().min(1).required(),
