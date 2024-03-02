@@ -22,6 +22,18 @@ const diaryExerciseSchema = new Schema(
 			minimum: 1,
 			require: true,
 		},
+		consumedCalories: {
+			type: Number,
+			default: 0,
+		},
+		totalExerciseTime: {
+			type: Number,
+			default: 0,
+		},
+		exerciseArr: {
+			type: Array,
+			default: [],
+		},
 		owner: {
 			type: Schema.Types.ObjectId,
 			ref: 'exercise',
@@ -34,6 +46,6 @@ const diaryExerciseSchema = new Schema(
 
 diaryExerciseSchema.post('save', handleMongooseError)
 
-const DiaryExercises = model('diaryExerciseSchema', diaryExerciseSchema)
+const DiaryExercise = model('diaryExerciseSchema', diaryExerciseSchema)
 
-module.exports = DiaryExercises
+module.exports = DiaryExercise

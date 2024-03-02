@@ -12,6 +12,7 @@ const {
 } = require('../controllers/diary')
 
 const { validateBody } = require('../helpers')
+
 const {
 	UserProductSchema,
 	UserExercisesSchema,

@@ -22,17 +22,29 @@ const diaryProductSchema = new Schema(
 			minimum: 1,
 			require: true,
 		},
+		consumedCalories: {
+			type: Number,
+			default: 0,
+		},
+		totalProductWeight: {
+			type: Number,
+			default: 0,
+		},
+		productArr: {
+			type: Array,
+			default: [],
+		},
 		owner: {
 			type: Schema.Types.ObjectId,
 			ref: 'product',
 			required: true,
 		},
 	},
-	{ versionKey: false, timestamps: true }
+	{ versionKey: false }
 )
 
 diaryProductSchema.post('save', handleMongooseError)
 
-const DiaryProducts = model('diaryProduct', diaryProductSchema)
+const DiaryProduct = model('diaryProduct', diaryProductSchema)
 
-module.exports = DiaryProducts
+module.exports = DiaryProduct

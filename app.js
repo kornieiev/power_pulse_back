@@ -16,7 +16,7 @@ const {
 } = process.env // импорт значений из .env
 
 const DB_HOST_NEW = `mongodb+srv://${DB_ADMIN_NAME}:${DB_ADMIN_PASSWORD}@${DB_CLUSTER_NAME}.mongodb.net/${DB_COLLECTION}` // адрес для подключения к БД
-// console.log(DB_HOST_NEW);
+// console.log(DB_HOST_NEW)
 
 const app = express() // создание веб-сервера
 

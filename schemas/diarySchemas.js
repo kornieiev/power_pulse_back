@@ -1,11 +1,10 @@
 const Joi = require('joi')
 
 const UserProductSchema = Joi.object({
-	product: Joi.string().required(),
-	date:
-		Joi.string()
-			.pattern(/^\d{2}-\d{2}-\d{4}$/)
-			.required() || date(),
+	productId: Joi.string().required(),
+	date: Joi.string()
+		.pattern(/^\d{2}-\d{2}-\d{4}$/)
+		.required(),
 	amount: Joi.number().min(1).required(),
 	calories: Joi.number().min(1).required(),
 })
@@ -16,7 +15,7 @@ const UserProductSchema = Joi.object({
 // calories - number; minimum 1; required
 
 const UserExercisesSchema = Joi.object({
-	exercise: Joi.string().required(),
+	exerciseId: Joi.string().required(),
 	date:
 		Joi.string()
 			.pattern(/^\d{2}-\d{2}-\d{4}$/)
