@@ -20,15 +20,15 @@ const {
 
 // add product
 diaryRouter.post(
-	'/products',
-	authenticate,
+	'/product',
+
 	validateBody(UserProductSchema),
 	addUserProducts
 )
 
 // add exercises
 diaryRouter.post(
-	'/exercises',
+	'/exercise/:id',
 	authenticate,
 	validateBody(UserExercisesSchema),
 	addUserExercises
@@ -36,12 +36,12 @@ diaryRouter.post(
 
 // get product and exercises
 
-diaryRouter.get('/productAndExercises', authenticate, getProductAndExercises)
+diaryRouter.get('/productsAndExercises', authenticate, getProductAndExercises)
 
 // delete products
-diaryRouter.delete('/products:/id', authenticate, deleteUserProducts)
+diaryRouter.delete('/product:/id', authenticate, deleteUserProducts)
 
 // delete exercises
-diaryRouter.delete('/exercises:/id', authenticate, deleteUserExercises)
+diaryRouter.delete('/exercise:/id', authenticate, deleteUserExercises)
 
 module.exports = diaryRouter

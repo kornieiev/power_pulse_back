@@ -3,7 +3,7 @@ const { handleMongooseError } = require('../helpers')
 
 const diaryProductSchema = new Schema(
 	{
-		productId: {
+		product: {
 			type: String,
 			required: true,
 		},
