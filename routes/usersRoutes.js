@@ -19,28 +19,30 @@ const {
   reVerificationSchema,
   currentUserSchema,
   subscribeUserSchema,
+  addMetricsSchema,
 } = require("../schemas/usersSchemas");
 
 const { validateBody } = require("../helpers");
+const addMetrics = require("../controllers/auth/addMetrics");
 
 const usersRouter = express.Router();
 
-// Registration
+// Registration +
 usersRouter.post("/register", validateBody(registerUserSchema), registerUser);
 
-// Verification
+// Verification +
 usersRouter.get("/verify/:verificationToken", verifyEmail);
 
-// Re-Verification
+// Re-Verification +
 usersRouter.post("/verify", validateBody(reVerificationSchema), reVerification);
 
-// Sign-in
+// Sign-in +
 usersRouter.post("/login", validateBody(loginUserSchema), loginUser);
 
-// Sign-out
+// Sign-out +
 usersRouter.post("/logout", authenticate, logoutUser);
 
-// Checking current user
+// Checking current user +
 usersRouter.get(
   "/current",
   authenticate,
@@ -48,7 +50,15 @@ usersRouter.get(
   currentUser
 );
 
-//  Updating subscription
+// Add Metrics
+usersRouter.post(
+  "/metrics",
+  // authenticate,
+  validateBody(addMetricsSchema),
+  addMetrics
+);
+
+//  Updating metrics
 usersRouter.patch(
   "/",
   authenticate,
