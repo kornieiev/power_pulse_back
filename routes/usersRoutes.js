@@ -53,18 +53,18 @@ usersRouter.get(
 // Add Metrics
 usersRouter.post(
   "/metrics",
-  // authenticate,
+  authenticate,
   validateBody(addMetricsSchema),
   addMetrics
 );
 
 //  Updating metrics
-usersRouter.patch(
-  "/",
-  authenticate,
-  validateBody(subscribeUserSchema),
-  updateSubscription
-);
+// usersRouter.patch(
+//   "/metrics",
+//   authenticate,
+//   validateBody(subscribeUserSchema),
+//   updateSubscription
+// );
 
 //  Updating Avatar
 usersRouter.patch(

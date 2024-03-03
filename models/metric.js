@@ -18,32 +18,32 @@ const metricSchema = new Schema( // схема, куда первым аргум
       required: true,
       min: 35,
     },
-    birthday: {
-      type: Date,
-      required: true,
-      validate: {
-        validator: function (value) {
-          // Проверяем, что дата рождения старше 18 лет
-          const now = new Date();
-          const age = now.getFullYear() - value.getFullYear();
-          if (age < 18) {
-            return false;
-          }
-          if (age === 18) {
-            if (now.getMonth() < value.getMonth()) {
-              return false;
-            }
-            if (now.getMonth() === value.getMonth()) {
-              if (now.getDate() < value.getDate()) {
-                return false;
-              }
-            }
-          }
-          return true;
-        },
-        message: "User must be older than 18 years",
-      },
-    },
+    // birthday: {
+    //   type: Date,
+    //   required: true,
+    //   // validate: {
+    //   //   validator: function (value) {
+    //   //     // Проверяем, что дата рождения старше 18 лет
+    //   //     const now = new Date();
+    //   //     const age = now.getFullYear() - value.getFullYear();
+    //   //     if (age < 18) {
+    //   //       return false;
+    //   //     }
+    //   //     if (age === 18) {
+    //   //       if (now.getMonth() < value.getMonth()) {
+    //   //         return false;
+    //   //       }
+    //   //       if (now.getMonth() === value.getMonth()) {
+    //   //         if (now.getDate() < value.getDate()) {
+    //   //           return false;
+    //   //         }
+    //   //       }
+    //   //     }
+    //   //     return true;
+    //   //   },
+    //   //   message: "User must be older than 18 years",
+    //   // },
+    // },
     blood: {
       type: Number,
       required: true,
@@ -58,6 +58,13 @@ const metricSchema = new Schema( // схема, куда первым аргум
       type: Number,
       required: true,
       enum: [1, 2, 3, 4, 5],
+    },
+    age: {
+      type: Number,
+      required: true,
+    },
+    BMR: {
+      type: Number,
     },
     owner: {
       // https://youtu.be/gS0cjVI72Ok?t=2913
