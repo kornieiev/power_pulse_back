@@ -22,7 +22,7 @@ const diaryExerciseSchema = new Schema(
 			minimum: 1,
 			require: true,
 		},
-		consumedCalories: {
+		burnedCalories: {
 			type: Number,
 			default: 0,
 		},
@@ -41,11 +41,11 @@ const diaryExerciseSchema = new Schema(
 		},
 	},
 
-	{ versionKey: false, timestamps: true }
+	{ versionKey: false }
 )
 
 diaryExerciseSchema.post('save', handleMongooseError)
 
-const DiaryExercise = model('diaryExerciseSchema', diaryExerciseSchema)
+const DiaryExercise = model('diaryExercise', diaryExerciseSchema)
 
 module.exports = DiaryExercise

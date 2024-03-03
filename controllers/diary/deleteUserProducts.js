@@ -1,20 +1,30 @@
+const { HttpError } = require('../../helpers')
 const { DiaryProduct } = require('../../models')
 
 const deleteUserProducts = async (req, res) => {
+	const { _id: owner } = req.user
 	const { id } = req.params
-	// const deleteProduct = await DiaryProduct.findByIdAndDelete(id)
+	const { date, productId } = req.body
+	console.log('productId', productId)
 
-	const findProduct = await DiaryProduct.findOne({ id })
+	const findProduct = await DiaryProduct.findOne({ owner, date })
+
+	// const findProduct = await DiaryProduct.find(productId.productArr)
+
+	console.log('findProduct', findProduct)
 
 	if (!findProduct) {
 		throw HttpError(404, 'Not found')
 	}
 
 	const result = await DiaryProduct.findByIdAndUpdate(
-		id,
+		findProduct,
 		{
-			$inc: { consumedCalories: -productArr.calories, totalWeight: -amount },
-			$pull: { productArr: { _id: productArrId } },
+			$inc: {
+				consumedCalories: -findProduct.productArr[0].calories,
+				totalProductWeight: -findProduct.productArr[0].amount,
+			},
+			$pull: { productArr: { productId: id } },
 		},
 		{ new: true }
 	)

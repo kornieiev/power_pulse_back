@@ -2,6 +2,8 @@ const { DiaryProduct } = require('../../models')
 
 const addUserProducts = async (req, res) => {
 	const { _id: owner } = req.user
+	// const { productId } = req.body
+	// console.log(productId)
 
 	const { date, calories, amount, productId } = req.body
 

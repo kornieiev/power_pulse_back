@@ -3,7 +3,7 @@ const { handleMongooseError } = require('../helpers')
 
 const diaryProductSchema = new Schema(
 	{
-		product: {
+		productId: {
 			type: String,
 			required: true,
 		},
@@ -24,11 +24,11 @@ const diaryProductSchema = new Schema(
 		},
 		consumedCalories: {
 			type: Number,
-			default: 0,
+			default: +0,
 		},
 		totalProductWeight: {
 			type: Number,
-			default: 0,
+			default: +0,
 		},
 		productArr: {
 			type: Array,
@@ -48,3 +48,24 @@ diaryProductSchema.post('save', handleMongooseError)
 const DiaryProduct = model('diaryProduct', diaryProductSchema)
 
 module.exports = DiaryProduct
+
+// const shoppingListSchema = new Schema({
+// 	_id: false,
+// 	type: [
+// 		{
+// 			ingredientId: {
+// 				type: Schema.Types.ObjectId,
+// 				ref: 'ingredient',
+// 			},
+// 			exerciseId: {
+// 				type: Schema.Types.ObjectId,
+// 				ref: 'exercise',
+// 			},
+// 			measure: {
+// 				type: [String],
+// 				default: [],
+// 			},
+// 		},
+// 	],
+// 	default: [],
+// })

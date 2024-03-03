@@ -1,12 +1,28 @@
 const { DiaryExercise } = require('../../models')
 
 const deleteUserExercises = async (req, res) => {
+	const { _id: owner } = req.user
 	const { id } = req.params
-	const result = await DiaryExercise.findByIdAndDelete(id)
+	const { date } = req.body
 
-	if (!result) {
+	const findExercise = await DiaryExercise.findOne({ owner, date })
+
+	if (!findExercise) {
 		throw HttpError(404, 'Not found')
 	}
+
+	const result = await DiaryExercise.findByIdAndUpdate(
+		findExercise._id,
+		{
+			$inc: {
+				burnedCalories: -findExercise.exerciseArr[0].calories,
+				totalExerciseTime: -findExercise.exerciseArr[0].time,
+			},
+			$pull: { exerciseArr: { exerciseId: id } },
+		},
+		{ new: true }
+	)
+
 	res.json(result)
 }
 

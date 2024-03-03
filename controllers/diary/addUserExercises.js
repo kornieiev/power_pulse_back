@@ -11,7 +11,7 @@ const addUserExercises = async (req, res) => {
 		const updateResults = await DiaryExercise.findByIdAndUpdate(
 			findDate._id,
 			{
-				$inc: { consumedCalories: +calories, totalExerciseTime: +time },
+				$inc: { burnedCalories: +calories, totalExerciseTime: +time },
 				$push: { exerciseArr: { exerciseId, time, calories } },
 			},
 			{ new: true }
@@ -24,7 +24,7 @@ const addUserExercises = async (req, res) => {
 		owner,
 		date,
 		exerciseId,
-		consumedCalories: calories,
+		burnedCalories: calories,
 		totalExerciseTime: time,
 
 		exerciseArr: [{ exerciseId, time, calories }],
