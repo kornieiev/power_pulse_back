@@ -25,6 +25,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/users", usersRouters);
+app.use("/training", exerciseRoutes);
+
 
 app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });
