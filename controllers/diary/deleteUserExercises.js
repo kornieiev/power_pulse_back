@@ -1,3 +1,4 @@
+const { HttpError } = require('../../helpers')
 const { DiaryExercise } = require('../../models')
 
 const deleteUserExercises = async (req, res) => {
@@ -11,12 +12,17 @@ const deleteUserExercises = async (req, res) => {
 		throw HttpError(404, 'Not found')
 	}
 
+	const index = findExercise.exerciseArr.findIndex(product => {
+		const ind = product.exerciseId === id
+		return ind
+	})
+
 	const result = await DiaryExercise.findByIdAndUpdate(
 		findExercise._id,
 		{
 			$inc: {
-				burnedCalories: -findExercise.exerciseArr[0].calories,
-				totalExerciseTime: -findExercise.exerciseArr[0].time,
+				burnedCalories: -findExercise.exerciseArr[index].calories,
+				totalExerciseTime: -findExercise.exerciseArr[index].time,
 			},
 			$pull: { exerciseArr: { exerciseId: id } },
 		},
@@ -27,14 +33,3 @@ const deleteUserExercises = async (req, res) => {
 }
 
 module.exports = deleteUserExercises
-
-// $inc $pull
-
-// data = await Diary.findByIdAndUpdate(
-//       foundedDiary._id,
-//       {
-//         $inc: { burnedCalories: -doneExercise.calories, sportTime: -time },
-//         $pull: { doneExercises: { _id: doneExerciseId } },
-//       },
-//       { new: true },
-//     )
