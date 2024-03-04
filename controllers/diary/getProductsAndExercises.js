@@ -1,7 +1,7 @@
 const { DiaryExercise } = require('../../models')
 const { DiaryProduct } = require('../../models')
 
-const getProductAndExercises = async (req, res) => {
+const getProductsAndExercises = async (req, res) => {
 	const { _id: owner } = req.user
 
 	const [products, exercises] = await Promise.all([
@@ -14,4 +14,4 @@ const getProductAndExercises = async (req, res) => {
 	res.json(data)
 }
 
-module.exports = getProductAndExercises
+module.exports = getProductsAndExercises
