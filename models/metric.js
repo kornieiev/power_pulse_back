@@ -81,7 +81,7 @@ const metricSchema = new Schema( // схема, куда первым аргум
   } // вместо создания строки на бекенде с указанием версии будет создан штамп времени создания и изменения
 );
 
-metricSchema.post("metric", handleMongooseError);
+metricSchema.post("save", handleMongooseError);
 
 const Metric = model("metric", metricSchema);
 
