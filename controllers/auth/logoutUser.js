@@ -7,6 +7,7 @@ const logoutUser = async (req, res, next) => {
   const [type, token] = authHeader.split(" ");
 
   const { id } = jwt.verify(token, JWT_SECRET);
+  console.log("logoutUser-id:", id);
   if (token || token !== "") {
     await User.findByIdAndUpdate(id, { token: "" }, { new: true });
     req.headers.authorization = "";
