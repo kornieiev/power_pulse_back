@@ -1,4 +1,3 @@
-// const Diary = require('../../models/diary')
 const { DiaryExercise } = require('../../models')
 const { DiaryProduct } = require('../../models')
 
@@ -10,11 +9,7 @@ const getProductAndExercises = async (req, res) => {
 		DiaryExercise.find({ owner }),
 	])
 
-	// const product = await DiaryProduct.find({ owner })
-
-	// const exercise = await DiaryExercise.find({ owner })
-
-	const data = { products, exercises }
+	const data = [...products, ...exercises]
 
 	res.json(data)
 }

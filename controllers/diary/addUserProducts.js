@@ -2,8 +2,6 @@ const { DiaryProduct } = require('../../models')
 
 const addUserProducts = async (req, res) => {
 	const { _id: owner } = req.user
-	// const { productId } = req.body
-	// console.log(productId)
 
 	const { date, calories, amount, productId } = req.body
 
@@ -29,41 +27,10 @@ const addUserProducts = async (req, res) => {
 		consumedCalories: calories,
 		totalProductWeight: amount,
 
-		productArr: [{ productId, amount, calories }],
+		productArr: { productId, calories, amount },
 	})
 
 	res.status(201).json(newResult)
 }
 
 module.exports = addUserProducts
-
-// const diaryEntry = await Diary.findOneAndUpdate(
-//     {
-//       owner,
-//       "addProducts.productId": productId,
-//       "addProducts.date": date,
-//     },
-//     {
-//       $inc: {
-//         "addProducts.$.amount": +amount,
-//         "addProducts.$.calories": +calories,
-//       },
-//     },
-//     { new: true }
-//   ).populate("addProducts.productId");
-
-//   if (!diaryEntry) {
-//     const newDiaryEntry = await Diary.findOneAndUpdate(
-//       { owner, date },
-//       {
-//         $push: {
-//           addProducts: {
-//             productId,
-//             date,
-//             amount,
-//             calories,
-//           },
-//         },
-//       },
-//       { upsert: true, new: true }
-//     ).populate("addProducts.productId");
