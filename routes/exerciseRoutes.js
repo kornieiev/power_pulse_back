@@ -6,7 +6,6 @@ const { schemas } = require("../models/ExerciseCategory");
 
 const exerciseRouters = express.Router();
 
-
-exerciseRouters.get("/all", getExerciseCategories );
+exerciseRouters.get("/all", getExerciseCategories);
 
 module.exports = exerciseRouters;
