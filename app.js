@@ -1,3 +1,4 @@
+
 const express = require('express') // создали веб-сервер
 const morgan = require('morgan') // для логирования HTTP-запросов
 const cors = require('cors') // позволяет браузеру разрешать кросс-доменные запросы
@@ -12,6 +13,7 @@ require('colors') // для подсвечивания информации вы
 
 
 const {
+
 	DB_ADMIN_NAME,
 	DB_ADMIN_PASSWORD,
 	DB_CLUSTER_NAME,
@@ -24,40 +26,39 @@ const DB_HOST_NEW = `mongodb+srv://${DB_ADMIN_NAME}:${DB_ADMIN_PASSWORD}@${DB_CL
  console.log(DB_HOST_NEW)
 
 
-const app = express() // создание веб-сервера
+const app = express(); // создание веб-сервера
 
-app.use(morgan('tiny')) // 'combined', 'common', 'short', 'tiny', 'dev'
-app.use(cors())
-app.use(express.json())
-
+app.use(morgan("tiny")); // 'combined', 'common', 'short', 'tiny', 'dev'
+app.use(cors());
+app.use(express.json());
 
 app.use("/users", usersRouters);
+
 app.use("/training", exerciseRoutes);
 app.use('/diary', diaryRouters)
 app.use("/nutritions", nutritionsRouter);
 
 
-
 app.use((_, res) => {
-	res.status(404).json({ message: 'Route not found' })
-})
+  res.status(404).json({ message: "Route not found" });
+});
 
 app.use((err, req, res, next) => {
-	const { status = 500, message = 'Server error' } = err
-	res.status(status).json({ message })
-})
+  const { status = 500, message = "Server error" } = err;
+  res.status(status).json({ message });
+});
 
 mongoose //
-	.connect(DB_HOST_NEW)
-	.then(() => console.log('Database connection successful'.bold.italic.yellow))
-	.then(() =>
-		app.listen(PORT, () =>
-			console.log(
-				`Server is running. Use this API on port: ${PORT}`.bold.italic.yellow
-			)
-		)
-	)
-	.catch(err => {
-		console.error(err.message)
-		process.exit(1)
-	})
+  .connect(DB_HOST_NEW)
+  .then(() => console.log("Database connection successful".bold.italic.yellow))
+  .then(() =>
+    app.listen(PORT, () =>
+      console.log(
+        `Server is running. Use this API on port: ${PORT}`.bold.italic.yellow
+      )
+    )
+  )
+  .catch((err) => {
+    console.error(err.message);
+    process.exit(1);
+  });
