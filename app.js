@@ -3,6 +3,7 @@ const morgan = require("morgan"); // для логирования HTTP-запр
 const cors = require("cors"); // позволяет браузеру разрешать кросс-доменные запросы
 const mongoose = require("mongoose"); // создает подключение к базе данных MongoDB
 const usersRouters = require("./routes/usersRoutes");
+const exerciseRoutes = require("./routes/exerciseRoutes")
 require("dotenv").config(); // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
 require("colors"); // для подсвечивания информации выводимой в консоли
 
@@ -15,7 +16,7 @@ const {
 } = process.env; // импорт значений из .env
 
 const DB_HOST_NEW = `mongodb+srv://${DB_ADMIN_NAME}:${DB_ADMIN_PASSWORD}@${DB_CLUSTER_NAME}.mongodb.net/${DB_COLLECTION}`; // адрес для подключения к БД
-// console.log(DB_HOST_NEW);
+console.log(DB_HOST_NEW);
 
 const app = express(); // создание веб-сервера
 
