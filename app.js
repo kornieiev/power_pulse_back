@@ -1,23 +1,30 @@
-const express = require("express"); // создали веб-сервер
-const morgan = require("morgan"); // для логирования HTTP-запросов
-const cors = require("cors"); // позволяет браузеру разрешать кросс-доменные запросы
-const mongoose = require("mongoose"); // создает подключение к базе данных MongoDB
-const usersRouters = require("./routes/usersRoutes");
-const diaryRouters = require("./routes/diaryRoutes");
-const exerciseRouters = require("./routes/exerciseRoutes");
-require("dotenv").config(); // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
-require("colors"); // для подсвечивания информации выводимой в консоли
+
+const express = require('express') // создали веб-сервер
+const morgan = require('morgan') // для логирования HTTP-запросов
+const cors = require('cors') // позволяет браузеру разрешать кросс-доменные запросы
+const mongoose = require('mongoose') // создает подключение к базе данных MongoDB
+const usersRouters = require('./routes/usersRoutes')
+const diaryRouters = require('./routes/diaryRoutes')
+const exerciseRoutes = require("./routes/exerciseRoutes");
+const nutritionsRouter = require('./routes/nutritionsRouter')
+require('dotenv').config() // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
+require('colors') // для подсвечивания информации выводимой в консоли
+
+
 
 const {
-  DB_ADMIN_NAME,
-  DB_ADMIN_PASSWORD,
-  DB_CLUSTER_NAME,
-  DB_COLLECTION,
-  PORT,
-} = process.env; // импорт значений из .env
 
-const DB_HOST_NEW = `mongodb+srv://${DB_ADMIN_NAME}:${DB_ADMIN_PASSWORD}@${DB_CLUSTER_NAME}.mongodb.net/${DB_COLLECTION}`; // адрес для подключения к БД
-// console.log(DB_HOST_NEW)
+	DB_ADMIN_NAME,
+	DB_ADMIN_PASSWORD,
+	DB_CLUSTER_NAME,
+	DB_COLLECTION,
+	PORT,
+} = process.env // импорт значений из .env
+
+
+const DB_HOST_NEW = `mongodb+srv://${DB_ADMIN_NAME}:${DB_ADMIN_PASSWORD}@${DB_CLUSTER_NAME}.mongodb.net/${DB_COLLECTION}` // адрес для подключения к БД
+ console.log(DB_HOST_NEW)
+
 
 const app = express(); // создание веб-сервера
 
@@ -26,8 +33,11 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/users", usersRouters);
-app.use("/exercises", exerciseRouters);
-app.use("/diary", diaryRouters);
+
+app.use("/training", exerciseRoutes);
+app.use('/diary', diaryRouters)
+app.use("/nutritions", nutritionsRouter);
+
 
 app.use((_, res) => {
   res.status(404).json({ message: "Route not found" });
