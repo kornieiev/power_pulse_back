@@ -31,6 +31,7 @@ const addMetricsSchema = Joi.object({
   levelActivity: Joi.number().required().valid(1, 2, 3, 4, 5),
   age: Joi.number().required().min(18),
   userName: Joi.string(),
+  resultBMR: Joi.number(),
 });
 
 module.exports = {

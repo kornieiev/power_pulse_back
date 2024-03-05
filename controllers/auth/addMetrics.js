@@ -1,12 +1,5 @@
+const BMR = require("../../helpers/BMR");
 const { Metric } = require("../../models");
-
-const lifeStyle = {
-  1: 1.2,
-  2: 1.375,
-  3: 1.55,
-  4: 1.725,
-  5: 1.9,
-};
 
 const addMetrics = async (req, res, next) => {
   const {
@@ -23,9 +16,7 @@ const addMetrics = async (req, res, next) => {
   const { _id: owner } = req.user;
   const userMetric = await Metric.find({ owner });
 
-  const BMR =
-    (10 * currentWeight + 6.25 * height - 5 * age + 5) *
-    (levelActivity * lifeStyle[levelActivity]);
+  const resultBMR = BMR(height, currentWeight, levelActivity, age);
 
   if (userMetric && userMetric.length < 1) {
     const result = await Metric.create({
@@ -38,7 +29,7 @@ const addMetrics = async (req, res, next) => {
       levelActivity,
       owner,
       age,
-      BMR,
+      resultBMR,
     });
     res.status(200).json(result);
   } else {
