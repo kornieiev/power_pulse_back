@@ -59,12 +59,12 @@ usersRouter.post(
 );
 
 //  Updating metrics
-// usersRouter.patch(
-//   "/metrics",
-//   authenticate,
-//   validateBody(subscribeUserSchema),
-//   updateSubscription
-// );
+usersRouter.patch(
+  "/metrics",
+  authenticate,
+  validateBody(subscribeUserSchema),
+  updateSubscription
+);
 
 //  Updating Avatar
 usersRouter.patch(

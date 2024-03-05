@@ -30,6 +30,7 @@ const addMetricsSchema = Joi.object({
   sex: Joi.string().required().valid("male", "female"),
   levelActivity: Joi.number().required().valid(1, 2, 3, 4, 5),
   age: Joi.number().required().min(18),
+  userName: Joi.string(),
 });
 
 module.exports = {

@@ -8,6 +8,9 @@ const metricSchema = new Schema( // схема, куда первым аргум
       required: true,
       min: 150,
     },
+    userName: {
+      type: String,
+    },
     currentWeight: {
       type: Number,
       required: true,
