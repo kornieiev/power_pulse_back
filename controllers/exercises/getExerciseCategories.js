@@ -1,6 +1,6 @@
-const createError = require("http-errors");
+// const createError = require("http-errors");
 
-const endpoints = require("./endpoints");
+// const endpoints = require("./endpoints");
 const Exercise = require("../../models/ExerciseCategory");
 
 const getExerciseCategories = async (req, res, next) => {
