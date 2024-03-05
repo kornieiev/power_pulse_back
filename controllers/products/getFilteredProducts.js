@@ -1,45 +1,42 @@
-const { Product } = require("../../models/product");
-const { controllerWrapper, validateBody } = require("../../helpers");
+const { Product } = require('../../models/product')
 
 const getFilteredProducts = async (req, res) => {
-  const { _id: id } = req.user;
-  const {
-    recommended,
-    category_id: categoryId,
-    query,
-    page,
-    limit,
-  } = req.query;
+	const { category, recommended, query } = req.body
 
-  let result = [];
-  let total = 0;
-  const findFilter = {};
+	console.log(category, recommended, query)
 
-  const profile = await Profile.findOne({ owner: id });
+	// const { _id: id } = req.user
+	// const { recommended, category_id: categoryId, query, page, limit } = req.query
 
-  if (profile && typeof recommended !== "undefined") {
-    findFilter[`groupBloodNotAllowed.${profile.blood}`] =
-      recommended.toLowerCase() === "false";
-  }
+	// let result = []
+	// let total = 0
+	// const findFilter = {}
 
-  if (typeof query !== "undefined") {
-    const normilizedQuery = query.toString().trim();
-    findFilter.title = { $regex: new RegExp(normilizedQuery, "i") };
-  }
+	// const profile = await Profile.findOne({ owner: id })
 
-  if (typeof categoryId !== "undefined") {
-    findFilter.category = categoryId;
-  }
+	// if (profile && typeof recommended !== 'undefined') {
+	// 	findFilter[`groupBloodNotAllowed.${profile.blood}`] =
+	// 		recommended.toLowerCase() === 'false'
+	// }
 
-  result = await Product.find(
-    findFilter,
-    {},
-    paginationParams(page, limit)
-  ).populate("category");
+	// if (typeof query !== 'undefined') {
+	// 	const normilizedQuery = query.toString().trim()
+	// 	findFilter.title = { $regex: new RegExp(normilizedQuery, 'i') }
+	// }
 
-  total = await Product.countDocuments(findFilter);
+	// if (typeof categoryId !== 'undefined') {
+	// 	findFilter.category = categoryId
+	// }
 
-  res.json({ data: result, total });
-};
+	// result = await Product.find(
+	// 	findFilter,
+	// 	{},
+	// 	paginationParams(page, limit)
+	// ).populate('category')
 
-module.exports = controllerWrapper(getFilteredProducts);
+	// total = await Product.countDocuments(findFilter)
+
+	// res.json({ data: result, total })
+}
+
+module.exports = getFilteredProducts

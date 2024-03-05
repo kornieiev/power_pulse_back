@@ -1,12 +1,18 @@
-const { ProductsCategory } = require("../../models/productsCategory");
-// const { controllerWrapper } = require("../../helpers");
+// const { ProductsCategory } = require('../../models/productsCategory')
+const path = require('path')
+const fs = require('fs/promises')
+
+const categoriesPath = path.join(
+	__dirname,
+	'../../resources/productsCategories.json'
+)
 
 const getProductsCategories = async (req, res) => {
- 
-  const result = await ProductsCategory.find();
-  console.log(result)
-  res.status(200).json(result);
-};
+	const categories = await fs.readFile(categoriesPath)
 
+	const data = JSON.parse(categories)
 
-module.exports = getProductsCategories;
+	res.status(200).json(data)
+}
+
+module.exports = getProductsCategories
