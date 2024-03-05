@@ -66,7 +66,7 @@ const metricSchema = new Schema( // схема, куда первым аргум
       type: Number,
       required: true,
     },
-    BMR: {
+    resultBMR: {
       type: Number,
     },
     owner: {
