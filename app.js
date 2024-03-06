@@ -2,10 +2,11 @@ const express = require("express"); // создали веб-сервер
 const morgan = require("morgan"); // для логирования HTTP-запросов
 const cors = require("cors"); // позволяет браузеру разрешать кросс-доменные запросы
 const mongoose = require("mongoose"); // создает подключение к базе данных MongoDB
-const usersRouters = require("./routes/usersRoutes");
+const usersRoutes = require("./routes/usersRoutes");
 const diaryRouters = require("./routes/diaryRoutes");
 const exerciseRoutes = require("./routes/exerciseRoutes");
 const nutritionsRouter = require("./routes/nutritionsRouter");
+const cloudinaryFn = require("./utils/cloudinaryFn");
 require("dotenv").config(); // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
 require("colors"); // для подсвечивания информации выводимой в консоли
 
@@ -25,8 +26,13 @@ const app = express(); // создание веб-сервера
 app.use(morgan("tiny")); // 'combined', 'common', 'short', 'tiny', 'dev'
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
-app.use("/users", usersRouters);
+// cloudinary:
+// const cloudinaryRes = cloudinaryFn;
+// cloudinaryRes();
+
+app.use("/users", usersRoutes);
 
 app.use("/training", exerciseRoutes);
 app.use("/diary", diaryRouters);
