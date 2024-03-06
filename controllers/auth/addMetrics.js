@@ -33,7 +33,7 @@ const addMetrics = async (req, res, next) => {
       age,
       resultBMR,
       birthday,
-      avatar: "some link",
+      avatar,
     });
     res.status(200).json(result);
   } else {
