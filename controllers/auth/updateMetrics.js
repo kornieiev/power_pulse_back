@@ -12,6 +12,8 @@ const updateMetrics = async (req, res, next) => {
     levelActivity,
     age,
     userName,
+    birthday,
+    avatar,
   } = req.body;
 
   const { _id: owner } = req.user;
@@ -49,7 +51,6 @@ const updateMetrics = async (req, res, next) => {
     newAge,
     newSex
   );
-  console.log(newResultBMR);
 
   if (userMetric.length > 0) {
     const result = await Metric.findOneAndUpdate(
@@ -66,6 +67,8 @@ const updateMetrics = async (req, res, next) => {
           age,
           userName,
           resultBMR: newResultBMR,
+          birthday,
+          avatar: "some link",
         },
       },
       { new: true }

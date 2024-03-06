@@ -11,6 +11,8 @@ const addMetrics = async (req, res, next) => {
     levelActivity,
     age,
     userName,
+    birthday,
+    avatar,
   } = req.body;
 
   const { _id: owner } = req.user;
@@ -30,6 +32,8 @@ const addMetrics = async (req, res, next) => {
       owner,
       age,
       resultBMR,
+      birthday,
+      avatar: "some link",
     });
     res.status(200).json(result);
   } else {
