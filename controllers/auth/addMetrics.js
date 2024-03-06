@@ -16,7 +16,7 @@ const addMetrics = async (req, res, next) => {
   const { _id: owner } = req.user;
   const userMetric = await Metric.find({ owner });
 
-  const resultBMR = BMR(height, currentWeight, levelActivity, age);
+  const resultBMR = BMR(height, currentWeight, levelActivity, age, sex);
 
   if (userMetric && userMetric.length < 1) {
     const result = await Metric.create({

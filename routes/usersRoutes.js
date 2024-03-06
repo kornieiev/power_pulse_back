@@ -17,8 +17,8 @@ const {
   loginUserSchema,
   reVerificationSchema,
   currentUserSchema,
-  subscribeUserSchema,
   addMetricsSchema,
+  updateMetricsSchema,
 } = require("../schemas/usersSchemas");
 
 const { validateBody } = require("../helpers");
@@ -62,7 +62,7 @@ usersRouter.post(
 usersRouter.patch(
   "/metrics",
   authenticate,
-  validateBody(addMetricsSchema),
+  validateBody(updateMetricsSchema),
   updateMetrics
 );
 
