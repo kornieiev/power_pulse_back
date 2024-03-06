@@ -32,6 +32,7 @@ const addMetricsSchema = Joi.object({
   age: Joi.number().required().min(18),
   userName: Joi.string(),
   resultBMR: Joi.number(),
+  avatar: Joi.string(),
 });
 
 const updateMetricsSchema = Joi.object({
@@ -47,6 +48,7 @@ const updateMetricsSchema = Joi.object({
   age: Joi.number().min(18),
   userName: Joi.string(),
   resultBMR: Joi.number(),
+  avatar: Joi.string(),
 });
 
 module.exports = {
