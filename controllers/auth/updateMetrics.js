@@ -4,41 +4,67 @@ const { Metric } = require("../../models");
 
 const updateMetrics = async (req, res, next) => {
   const {
-    height: newHeight,
-    currentWeight: newCurrentWeight,
-    desiredWeight: newDesiredWeight,
-    blood: newBlood,
-    sex: newSex,
-    levelActivity: newLevelActivity,
-    age: newAge,
-    userName: newUserName,
+    height,
+    currentWeight,
+    desiredWeight,
+    blood,
+    sex,
+    levelActivity,
+    age,
+    userName,
   } = req.body;
 
   const { _id: owner } = req.user;
+
+  let newHeight = height;
+  let newCurrentWeight = currentWeight;
+  let newSex = sex;
+  let newLevelActivity = levelActivity;
+  let newAge = age;
+
+  const userMetric = await Metric.find({ owner });
+
+  userMetric.map((el) => {
+    if (!newHeight && el.height) {
+      newHeight = el.height;
+    }
+    if (!newCurrentWeight && el.currentWeight) {
+      newCurrentWeight = el.currentWeight;
+    }
+    if (!newLevelActivity && el.levelActivity) {
+      newLevelActivity = el.levelActivity;
+    }
+    if (!newAge && el.age) {
+      newAge = el.age;
+    }
+    if (!newSex && el.sex) {
+      newSex = el.sex;
+    }
+  });
 
   const newResultBMR = BMR(
     newHeight,
     newCurrentWeight,
     newLevelActivity,
-    newAge
+    newAge,
+    newSex
   );
-
-  const userMetric = await Metric.find({ owner });
-  console.log("userMetric:", userMetric);
+  console.log(newResultBMR);
 
   if (userMetric.length > 0) {
     const result = await Metric.findOneAndUpdate(
       { owner },
       {
+        ...userMetric,
         $set: {
-          userName: newUserName,
-          height: newHeight,
-          currentWeight: newCurrentWeight,
-          desiredWeight: newDesiredWeight,
-          blood: newBlood,
-          sex: newSex,
-          levelActivity: newLevelActivity,
-          age: newAge,
+          height,
+          currentWeight,
+          desiredWeight,
+          blood,
+          sex,
+          levelActivity,
+          age,
+          userName,
           resultBMR: newResultBMR,
         },
       },

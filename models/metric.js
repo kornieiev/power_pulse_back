@@ -5,7 +5,7 @@ const metricSchema = new Schema( // схема, куда первым аргум
   {
     height: {
       type: Number,
-      required: true,
+      // required: true,
       min: 150,
     },
     userName: {
@@ -13,12 +13,12 @@ const metricSchema = new Schema( // схема, куда первым аргум
     },
     currentWeight: {
       type: Number,
-      required: true,
+      // required: true,
       min: 35,
     },
     desiredWeight: {
       type: Number,
-      required: true,
+      // required: true,
       min: 35,
     },
     // birthday: {
@@ -49,22 +49,22 @@ const metricSchema = new Schema( // схема, куда первым аргум
     // },
     blood: {
       type: Number,
-      required: true,
+      // required: true,
       enum: [1, 2, 3, 4],
     },
     sex: {
       type: String,
-      required: true,
+      // required: true,
       enum: ["male", "female"],
     },
     levelActivity: {
       type: Number,
-      required: true,
+      // required: true,
       enum: [1, 2, 3, 4, 5],
     },
     age: {
       type: Number,
-      required: true,
+      // required: true,
     },
     resultBMR: {
       type: Number,
