@@ -6,7 +6,7 @@ const { nanoid } = require("nanoid");
 const sendEmail = require("../../helpers/sendEmail");
 
 const registerUser = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   const verificationCode = nanoid();
 
@@ -17,6 +17,7 @@ const registerUser = async (req, res, next) => {
   try {
     const result = await User.create({
       // ...req.body,
+      name,
       email,
       password: hashedPassword,
       // avatarURL,
@@ -30,6 +31,7 @@ const registerUser = async (req, res, next) => {
 
     res.status(201).json({
       id: result._id,
+      name,
       email,
       // avatarURL,
       verificationToken: verificationCode,
