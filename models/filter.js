@@ -1,22 +1,22 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose')
+const { handleMongooseError } = require('../helpers')
 
 const filterSchema = new Schema({
-  filter: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  imgURL: {
-    type: String,
-    required: true,
-  },
-});
+	filter: {
+		type: String,
+		required: true,
+	},
+	name: {
+		type: String,
+		required: true,
+	},
+	imgURL: {
+		type: String,
+		required: true,
+	},
+})
 
-const Filter = model("filters", filterSchema);
+filterSchema.post('save', handleMongooseError)
+const Filter = model('filters', filterSchema)
 
-module.exports = {
-  Filter,
-};
+module.exports = Filter

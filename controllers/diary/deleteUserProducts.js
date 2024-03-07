@@ -6,8 +6,6 @@ const deleteUserProducts = async (req, res) => {
 	const { id } = req.params
 	const { date } = req.body
 
-	console.log(id)
-
 	const findProduct = await DiaryProduct.findOne({ owner, date })
 
 	if (!findProduct) {
