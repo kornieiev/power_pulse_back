@@ -37,25 +37,7 @@ const userSchema = new Schema(
       // required: true,
     },
     name: {},
-    metrics: {
-      default: {
-        height: {
-          default: 0,
-        },
-        // currentWeight: 0,
-        // desiredWeight: 0,
-        // birthday: "00.00.0000",
-        // blood: 0,
-        // sex: "",
-        // levelActivity: 0,
-        // avatar: "",
-        // bmr: 0,
-        // trainingTime: 110,
-      },
-    },
-    height: {
-      type: String,
-    },
+    metrics: {},
   },
   {
     versionKey: false,
