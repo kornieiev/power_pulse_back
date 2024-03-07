@@ -1,4 +1,3 @@
-// const { ProductsCategory } = require('../../models/productsCategory')
 const path = require('path')
 const fs = require('fs/promises')
 

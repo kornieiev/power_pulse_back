@@ -9,6 +9,6 @@ const {
 const productsRouter = express.Router()
 
 productsRouter.get('/', authenticate, getProductsCategories)
-productsRouter.get('/category', getFilteredProducts)
+productsRouter.get('/category', authenticate, getFilteredProducts)
 
 module.exports = productsRouter

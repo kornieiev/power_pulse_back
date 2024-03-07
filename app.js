@@ -5,7 +5,7 @@ const mongoose = require('mongoose') // создает подключение к
 const usersRouters = require('./routes/usersRoutes')
 const diaryRouters = require('./routes/diaryRoutes')
 const exerciseRoutes = require('./routes/exercisesRoutes')
-const nutritionsRouter = require('./routes/productsRouter')
+const productsRouter = require('./routes/productsRouter')
 require('dotenv').config() // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
 require('colors') // для подсвечивания информации выводимой в консоли
 
@@ -18,7 +18,7 @@ const {
 } = process.env // импорт значений из .env
 
 const DB_HOST_NEW = `mongodb+srv://${DB_ADMIN_NAME}:${DB_ADMIN_PASSWORD}@${DB_CLUSTER_NAME}.mongodb.net/${DB_COLLECTION}` // адрес для подключения к БД
-console.log(DB_HOST_NEW)
+// console.log(DB_HOST_NEW)
 
 const app = express() // создание веб-сервера
 
@@ -30,7 +30,7 @@ app.use('/users', usersRouters)
 
 app.use('/exercises', exerciseRoutes)
 app.use('/diary', diaryRouters)
-app.use('/products', nutritionsRouter)
+app.use('/products', productsRouter)
 
 app.use((_, res) => {
 	res.status(404).json({ message: 'Route not found' })

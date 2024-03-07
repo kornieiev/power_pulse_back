@@ -1,8 +1,8 @@
-// const { Exercise } = require('../../models/ExerciseCategory')
+const { Exercise } = require('../../models')
 
-const endpoints = require('./endpoints')
+// const endpoints = require('./endpoints')
 
-const getExerciseFiltered = async (req, res) => {
+const getExercisesTypes = async (req, res) => {
 	// const { filter, name, page, limit } = req.query
 	// const findFilter = {}
 	// let result = []
@@ -14,19 +14,28 @@ const getExerciseFiltered = async (req, res) => {
 	// 	findFilter[endpoints[category].field] = name
 	// }
 	// res.json({ data: result, total })
+
+	const { bodyPart, equipment, target } = req.body
+
+	// if (bodyPart !== 'undefined') {
+	// 	const data = await Exercise.find({ bodyPart })
+	// 	// console.log(data)
+
+	// 	res.json(data)
+	// }
+
+	// if (equipment !== undefined) {
+	// 	const data = await Exercise.find({ equipment })
+	// 	// console.log(data)
+
+	// 	res.json(data)
+	// }
+
+	if (target !== undefined) {
+		const data = await Exercise.find({ target })
+
+		res.json(data)
+	}
 }
 
-module.exports = getExerciseFiltered
-
-// {
-//   "_id": {
-//     "$oid": "64f2458d6f67bc34bae4f966"
-//   },
-//   "bodyPart": "upper arms",
-//   "equipment": "dumbbell",
-//   "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0420.gif",
-//   "name": "dumbbell standing kickback",
-//   "target": "triceps",
-//   "burnedCalories": 177,
-//   "time": 3
-// }
+module.exports = getExercisesTypes

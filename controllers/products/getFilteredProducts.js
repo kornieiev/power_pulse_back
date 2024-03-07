@@ -1,42 +1,30 @@
-const { Product } = require('../../models/product')
+const { HttpError } = require('../../helpers')
+const { Product, Metric } = require('../../models')
 
 const getFilteredProducts = async (req, res) => {
-	const { category, recommended, query } = req.body
+	const { _id: owner } = req.user
+	const { category, title, groupBloodNotAllowed } = req.body
 
-	console.log(category, recommended, query)
+	const query = {}
+	category && (query.category = category)
+	title && (query.title = { $regex: title, $options: 'i' })
 
-	// const { _id: id } = req.user
-	// const { recommended, category_id: categoryId, query, page, limit } = req.query
+	const [{ blood }] = await Metric.find({ owner })
 
-	// let result = []
-	// let total = 0
-	// const findFilter = {}
+	if (groupBloodNotAllowed === 'recommended') {
+		query[`groupBloodNotAllowed.${blood}`] = 'false'
+	}
+	if (groupBloodNotAllowed === 'not recommended') {
+		query[`groupBloodNotAllowed.${blood}`] = 'true'
+	}
 
-	// const profile = await Profile.findOne({ owner: id })
+	const data = await Product.find(query)
 
-	// if (profile && typeof recommended !== 'undefined') {
-	// 	findFilter[`groupBloodNotAllowed.${profile.blood}`] =
-	// 		recommended.toLowerCase() === 'false'
-	// }
+	if (data.length < 1) {
+		throw HttpError(404, 'collections not found')
+	}
 
-	// if (typeof query !== 'undefined') {
-	// 	const normilizedQuery = query.toString().trim()
-	// 	findFilter.title = { $regex: new RegExp(normilizedQuery, 'i') }
-	// }
-
-	// if (typeof categoryId !== 'undefined') {
-	// 	findFilter.category = categoryId
-	// }
-
-	// result = await Product.find(
-	// 	findFilter,
-	// 	{},
-	// 	paginationParams(page, limit)
-	// ).populate('category')
-
-	// total = await Product.countDocuments(findFilter)
-
-	// res.json({ data: result, total })
+	res.json(data)
 }
 
 module.exports = getFilteredProducts

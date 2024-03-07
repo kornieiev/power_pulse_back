@@ -16,7 +16,8 @@ const productSchema = new Schema(
 			required: [true, 'Define product calories'],
 		},
 		category: {
-			type: Schema.Types.ObjectId,
+			// type: Schema.Types.ObjectId,
+			type: String,
 			ref: 'productsCategory',
 			required: true,
 		},
@@ -31,8 +32,6 @@ const productSchema = new Schema(
 )
 
 productSchema.post('save', handleMongooseError)
-const Product = model('product', productSchema)
+const Product = model('products', productSchema)
 
-module.exports = {
-	Product,
-}
+module.exports = Product
