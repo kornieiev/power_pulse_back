@@ -38,8 +38,11 @@
 //   res.status(200).json({ avatarURL });
 // };
 
-// module.exports = updateAvatar;
-
-const someFunc = async (req, res) => {
+const updateAvatar = async (req, res) => {
   const avatarURL = req.file.path;
+  console.log("updateAvatar-avatarURL", avatarURL);
+
+  res.status(200).json(avatarURL);
 };
+
+module.exports = updateAvatar;
