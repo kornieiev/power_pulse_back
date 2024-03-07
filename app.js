@@ -1,13 +1,18 @@
-const express = require('express') // создали веб-сервер
-const morgan = require('morgan') // для логирования HTTP-запросов
-const cors = require('cors') // позволяет браузеру разрешать кросс-доменные запросы
-const mongoose = require('mongoose') // создает подключение к базе данных MongoDB
-const usersRouters = require('./routes/usersRoutes')
-const diaryRouters = require('./routes/diaryRoutes')
-const exerciseRoutes = require('./routes/exercisesRoutes')
+
+const express = require("express"); // создали веб-сервер
+const morgan = require("morgan"); // для логирования HTTP-запросов
+const cors = require("cors"); // позволяет браузеру разрешать кросс-доменные запросы
+const mongoose = require("mongoose"); // создает подключение к базе данных MongoDB
+const usersRoutes = require("./routes/usersRoutes");
+const diaryRouters = require("./routes/diaryRoutes");
+const exerciseRoutes = require("./routes/exerciseRoutes");
+const nutritionsRouter = require("./routes/nutritionsRouter");
+const cloudinaryFn = require("./utils/cloudinaryFn");
+require("dotenv").config(); // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
+require("colors"); // для подсвечивания информации выводимой в консоли
+
 const productsRouter = require('./routes/productsRouter')
-require('dotenv').config() // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
-require('colors') // для подсвечивания информации выводимой в консоли
+
 
 const {
 	DB_ADMIN_NAME,
@@ -22,14 +27,27 @@ const DB_HOST_NEW = `mongodb+srv://${DB_ADMIN_NAME}:${DB_ADMIN_PASSWORD}@${DB_CL
 
 const app = express() // создание веб-сервера
 
-app.use(morgan('tiny')) // 'combined', 'common', 'short', 'tiny', 'dev'
-app.use(cors())
-app.use(express.json())
 
-app.use('/users', usersRouters)
+app.use(morgan("tiny")); // 'combined', 'common', 'short', 'tiny', 'dev'
+app.use(cors());
+app.use(express.json());
+app.use(express.static("public"));
+
+// cloudinary:
+// const cloudinaryRes = cloudinaryFn;
+// cloudinaryRes();
+
+app.use("/users", usersRoutes);
+
+app.use("/training", exerciseRoutes);
+app.use("/diary", diaryRouters);
+app.use("/nutritions", nutritionsRouter);
+
+
+
 app.use('/products', productsRouter)
 app.use('/exercises', exerciseRoutes)
-app.use('/diary', diaryRouters)
+
 
 app.use((_, res) => {
 	res.status(404).json({ message: 'Route not found' })

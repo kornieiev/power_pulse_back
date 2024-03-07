@@ -16,7 +16,7 @@ const {
   registerUserSchema,
   loginUserSchema,
   reVerificationSchema,
-  currentUserSchema,
+  // currentUserSchema,
   addMetricsSchema,
   updateMetricsSchema,
 } = require("../schemas/usersSchemas");
@@ -42,11 +42,11 @@ usersRouter.post("/login", validateBody(loginUserSchema), loginUser);
 // Sign-out +
 usersRouter.post("/logout", authenticate, logoutUser);
 
-// Checking current user +
+// Current user +
 usersRouter.get(
   "/current",
   authenticate,
-  validateBody(currentUserSchema),
+  // validateBody(currentUserSchema),
   currentUser
 );
 
@@ -66,12 +66,18 @@ usersRouter.patch(
   updateMetrics
 );
 
-//  Updating Avatar
+//  User Avatar
 usersRouter.patch(
   "/avatars",
   authenticate,
   upload.single("avatar"),
   updateAvatar
 );
+// usersRouter.patch(
+//   "/avatars",
+//   authenticate,
+//   upload.single("avatar"),
+//   updateAvatar
+// );
 
 module.exports = usersRouter;

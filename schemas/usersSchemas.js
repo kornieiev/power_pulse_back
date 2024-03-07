@@ -14,10 +14,10 @@ const reVerificationSchema = Joi.object({
   email: Joi.string().email().required(),
 });
 
-const currentUserSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
-});
+// const currentUserSchema = Joi.object({
+//   email: Joi.string().email(),
+//   password: Joi.string(),
+// });
 
 const addMetricsSchema = Joi.object({
   height: Joi.number().required().min(150),
@@ -54,7 +54,7 @@ const updateMetricsSchema = Joi.object({
 module.exports = {
   registerUserSchema,
   loginUserSchema,
-  currentUserSchema,
+  // currentUserSchema,
   reVerificationSchema,
   addMetricsSchema,
   updateMetricsSchema,
