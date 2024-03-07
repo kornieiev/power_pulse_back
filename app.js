@@ -27,10 +27,9 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/users', usersRouters)
-
+app.use('/products', productsRouter)
 app.use('/exercises', exerciseRoutes)
 app.use('/diary', diaryRouters)
-app.use('/products', productsRouter)
 
 app.use((_, res) => {
 	res.status(404).json({ message: 'Route not found' })

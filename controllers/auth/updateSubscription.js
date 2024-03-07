@@ -6,9 +6,11 @@ const updateSubscription = async (req, res, next) => {
 
   const { subscription } = req.body;
 
+  // блок проверяет, существует ли поле subscription в теле запроса. Если поле subscription отсутствует, функция отправляет ответ с кодом состояния 400 (Неверный запрос) и сообщением об ошибке
   if (subscription === undefined) {
     return res.status(400).json({ message: "Subscription field not detected" });
   }
+
   const result = await User.findByIdAndUpdate(
     owner,
     { $set: { subscription } },

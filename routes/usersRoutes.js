@@ -7,7 +7,6 @@ const {
   loginUser,
   logoutUser,
   currentUser,
-  updateSubscription,
   updateAvatar,
   verifyEmail,
   reVerification,
@@ -18,12 +17,13 @@ const {
   loginUserSchema,
   reVerificationSchema,
   currentUserSchema,
-  subscribeUserSchema,
   addMetricsSchema,
+  updateMetricsSchema,
 } = require("../schemas/usersSchemas");
 
 const { validateBody } = require("../helpers");
 const addMetrics = require("../controllers/auth/addMetrics");
+const updateMetrics = require("../controllers/auth/updateMetrics");
 
 const usersRouter = express.Router();
 
@@ -59,12 +59,12 @@ usersRouter.post(
 );
 
 //  Updating metrics
-// usersRouter.patch(
-//   "/metrics",
-//   authenticate,
-//   validateBody(subscribeUserSchema),
-//   updateSubscription
-// );
+usersRouter.patch(
+  "/metrics",
+  authenticate,
+  validateBody(updateMetricsSchema),
+  updateMetrics
+);
 
 //  Updating Avatar
 usersRouter.patch(

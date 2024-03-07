@@ -5,67 +5,50 @@ const metricSchema = new Schema( // схема, куда первым аргум
   {
     height: {
       type: Number,
-      required: true,
+      // required: true,
       min: 150,
+    },
+    userName: {
+      type: String,
     },
     currentWeight: {
       type: Number,
-      required: true,
+      // required: true,
       min: 35,
     },
     desiredWeight: {
       type: Number,
-      required: true,
+      // required: true,
       min: 35,
     },
-    // birthday: {
-    //   type: Date,
-    //   required: true,
-    //   // validate: {
-    //   //   validator: function (value) {
-    //   //     // Проверяем, что дата рождения старше 18 лет
-    //   //     const now = new Date();
-    //   //     const age = now.getFullYear() - value.getFullYear();
-    //   //     if (age < 18) {
-    //   //       return false;
-    //   //     }
-    //   //     if (age === 18) {
-    //   //       if (now.getMonth() < value.getMonth()) {
-    //   //         return false;
-    //   //       }
-    //   //       if (now.getMonth() === value.getMonth()) {
-    //   //         if (now.getDate() < value.getDate()) {
-    //   //           return false;
-    //   //         }
-    //   //       }
-    //   //     }
-    //   //     return true;
-    //   //   },
-    //   //   message: "User must be older than 18 years",
-    //   // },
-    // },
+    birthday: {
+      type: Date,
+      required: true,
+    },
+
     blood: {
       type: Number,
-      required: true,
+      // required: true,
       enum: [1, 2, 3, 4],
     },
     sex: {
       type: String,
-      required: true,
+      // required: true,
       enum: ["male", "female"],
     },
     levelActivity: {
       type: Number,
-      required: true,
+      // required: true,
       enum: [1, 2, 3, 4, 5],
     },
     age: {
       type: Number,
-      required: true,
+      // required: true,
     },
-    BMR: {
+    resultBMR: {
       type: Number,
     },
+    avatar: {},
     owner: {
       // https://youtu.be/gS0cjVI72Ok?t=2913
       // тут записуємо id userа, який додав метрику
