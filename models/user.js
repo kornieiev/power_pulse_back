@@ -36,6 +36,10 @@ const userSchema = new Schema(
       type: String,
       // required: true,
     },
+    metrics: {},
+    height: {
+      type: String,
+    },
   },
   {
     versionKey: false,
