@@ -1,9 +1,9 @@
 const { controllerWrapper } = require('../../helpers')
 
+const getExercisesFilters = require('./getExercisesFilters')
 const getExercises = require('./getExercises')
-const getExercisesTypes = require('./getExercisesTypes')
 
 module.exports = {
+	getExercisesFilters: controllerWrapper(getExercisesFilters),
 	getExercises: controllerWrapper(getExercises),
-	getExercisesTypes: controllerWrapper(getExercisesTypes),
 }

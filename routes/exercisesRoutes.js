@@ -1,14 +1,17 @@
 const express = require('express')
 
-const { getExercises, getExercisesTypes } = require('../controllers/exercises')
+const {
+	getExercisesFilters,
+	getExercises,
+} = require('../controllers/exercises')
 const { authenticate } = require('../middlewares')
 
 const exerciseRouters = express.Router()
 
-// get all exercises
-exerciseRouters.get('/', authenticate, getExercises)
+// get all filters exercises
+exerciseRouters.get('/filters', authenticate, getExercisesFilters)
 
-// get filter exercises
-exerciseRouters.get('/types', authenticate, getExercisesTypes)
+// get  exercises
+exerciseRouters.get('/', authenticate, getExercises)
 
 module.exports = exerciseRouters
