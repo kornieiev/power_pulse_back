@@ -67,7 +67,7 @@ usersRouter.patch(
 );
 
 //  User Avatar
-usersRouter.post(
+usersRouter.patch(
   "/avatars",
   authenticate,
   upload.single("avatar"),

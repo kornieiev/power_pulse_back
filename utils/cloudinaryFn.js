@@ -1,9 +1,16 @@
 // Require the cloudinary library
 const cloudinary = require("cloudinary").v2;
 
+const path = require("path");
+const avatarsDir = path.join(__dirname, "../../", "public");
+
 const { CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET } = process.env;
 
-const cloudinaryFn = async () => {
+const cloudinaryFn = async ({ avatarURL }) => {
+  // const resultUpload = path.join(avatarsDir, filename);
+  const resultUpload = path.join(avatarsDir, avatarURL);
+
+  console.log("resultUpload:", resultUpload);
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   // 1. Configure Cloudinary
   //
@@ -105,9 +112,9 @@ const cloudinaryFn = async () => {
   //////////////////
   (async () => {
     // Set the image to upload
-    const imagePath =
-      // "https://cloudinary-devs.github.io/cld-docs-assets/assets/images/happy_people.jpg";
-      "https://content2.rozetka.com.ua/goods/images/big/375850271.jpg";
+    const imagePath = resultUpload;
+    // "https://cloudinary-devs.github.io/cld-docs-assets/assets/images/happy_people.jpg";
+    // "https://content2.rozetka.com.ua/goods/images/big/375850271.jpg";
 
     // Upload the image
     const publicId = await uploadImage(imagePath);
