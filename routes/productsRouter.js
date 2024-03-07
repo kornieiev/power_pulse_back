@@ -8,7 +8,7 @@ const {
 
 const productsRouter = express.Router()
 
-productsRouter.get('/', authenticate, getProductsCategories)
-productsRouter.get('/category', authenticate, getFilteredProducts)
+productsRouter.get('/categories', authenticate, getProductsCategories)
+productsRouter.get('/filters', authenticate, getFilteredProducts)
 
 module.exports = productsRouter
