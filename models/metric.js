@@ -23,7 +23,7 @@ const metricSchema = new Schema( // схема, куда первым аргум
     },
     birthday: {
       type: Date,
-      required: true,
+      // required: true,
     },
 
     blood: {

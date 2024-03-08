@@ -12,7 +12,7 @@ function sendEmail(email, verificationToken) {
 
   const msg = {
     to: email,
-    cc: "ssapientiaa@outlook.com",
+    // cc: "ssapientiaa@outlook.com",
     from: "ssapientiaa@outlook.com",
     subject: "Verify your email",
     html: emailContentMaker(verificationToken),

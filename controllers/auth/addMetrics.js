@@ -1,44 +1,51 @@
-const BMR = require('../../helpers/BMR')
-const { Metric } = require('../../models')
+const BMR = require("../../helpers/BMR");
+const { Metric } = require("../../models");
+const { User } = require("../../models");
 
 const addMetrics = async (req, res, next) => {
-	const {
-		height,
-		currentWeight,
-		desiredWeight,
-		blood,
-		sex,
-		levelActivity,
-		age,
-		userName,
-		birthday,
-		avatar,
-	} = req.body
+  const { _id: owner, email } = req.user;
+  console.log("===>>>owner", owner);
 
-	const { _id: owner } = req.user
-	const userMetric = await Metric.find({ owner })
+  const {
+    height,
+    currentWeight,
+    desiredWeight,
+    blood,
+    sex,
+    levelActivity,
+    age,
+    userName,
+  } = req.body;
 
-	const resultBMR = BMR(height, currentWeight, levelActivity, age, sex)
+  const resultBMR = BMR(height, currentWeight, levelActivity, age, sex);
+  console.log("resultBMR", resultBMR);
 
-	if (userMetric && userMetric.length < 1) {
-		const result = await Metric.create({
-			userName,
-			height,
-			currentWeight,
-			desiredWeight,
-			blood,
-			sex,
-			levelActivity,
-			owner,
-			age,
-			resultBMR,
-			birthday,
-			avatar,
-		})
-		res.status(200).json(result)
-	} else {
-		res.status(409).json('User metrics has been already created')
-	}
-}
+  // const userData = await User.findById(owner);
+  // console.log("userData", userData);
 
-module.exports = addMetrics
+  const updatedUser = await User.findOneAndUpdate(
+    { email },
+    {
+      // ...userData,
+      $set: {
+        height,
+        currentWeight,
+        desiredWeight,
+        blood,
+        sex,
+        levelActivity,
+        age,
+        userName,
+        resultBMR,
+        userMetrics: true,
+      },
+    },
+    {
+      new: true,
+    }
+  );
+
+  res.status(200).json({ updatedUser });
+};
+
+module.exports = addMetrics;

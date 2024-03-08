@@ -1,4 +1,10 @@
-const BMR = (height, currentWeight, levelActivity, age, sex) => {
+const BMR = (
+  height = 0,
+  currentWeight = 0,
+  levelActivity = 0,
+  age = 0,
+  sex = ""
+) => {
   const lifeStyle = { 1: 1.2, 2: 1.375, 3: 1.55, 4: 1.725, 5: 1.9 };
 
   let BMRresult;
