@@ -51,20 +51,20 @@ usersRouter.get(
 );
 
 // Add Metrics
-usersRouter.post(
+usersRouter.put(
   "/metrics",
   authenticate,
   validateBody(addMetricsSchema),
   addMetrics
 );
 
-//  Updating metrics
-usersRouter.patch(
-  "/metrics",
-  authenticate,
-  validateBody(updateMetricsSchema),
-  updateMetrics
-);
+// //  Updating metrics
+// usersRouter.patch(
+//   "/metrics",
+//   authenticate,
+//   validateBody(updateMetricsSchema),
+//   updateMetrics
+// );
 
 //  User Avatar
 usersRouter.post(
@@ -73,11 +73,5 @@ usersRouter.post(
   upload.single("avatar"),
   updateAvatar
 );
-// usersRouter.patch(
-//   "/avatars",
-//   authenticate,
-//   upload.single("avatar"),
-//   updateAvatar
-// );
 
 module.exports = usersRouter;
