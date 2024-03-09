@@ -15,11 +15,6 @@ const reVerificationSchema = Joi.object({
   email: Joi.string().email().required(),
 });
 
-// const currentUserSchema = Joi.object({
-//   email: Joi.string().email(),
-//   password: Joi.string(),
-// });
-
 const addMetricsSchema = Joi.object({
   height: Joi.number().min(150),
   currentWeight: Joi.number().min(35),
