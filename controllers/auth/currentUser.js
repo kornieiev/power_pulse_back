@@ -1,13 +1,14 @@
 const { User } = require("../../models");
 
 const currentUser = async (req, res, next) => {
-  const { _id: owner, email } = req.user;
+  const { _id: owner } = req.user;
 
-  const userInfo = await User.find({ email });
+  const userInfo = await User.findById(owner);
+  console.log("userInfo", userInfo);
 
   const {
     _id,
-    userEmail,
+    email,
     userMetrics,
     height,
     avatarURL,
@@ -20,13 +21,13 @@ const currentUser = async (req, res, next) => {
     userName,
     birthday,
     age,
-  } = userInfo[0];
+  } = userInfo;
 
   // console.log("avatarURL", avatarURL);
 
   const userData = {
     _id,
-    userEmail,
+    email,
     userMetrics,
     height,
     avatarURL,
