@@ -36,7 +36,6 @@ const userSchema = new Schema(
       type: String,
       // required: true,
     },
-    //
     height: {
       type: Number,
       default: 555,
@@ -83,7 +82,6 @@ const userSchema = new Schema(
     resultBMR: {
       type: Number,
     },
-    // metrics: {},
     test: { type: String },
   },
   {

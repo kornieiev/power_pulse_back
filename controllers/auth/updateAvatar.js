@@ -6,15 +6,15 @@ const updateAvatar = async (req, res) => {
   const avatarURL = req.file.path;
   console.log("updateAvatar-avatarURL", avatarURL);
 
-  await User.updateOne(
-    { owner },
+  const newAvatar = await User.findByIdAndUpdate(
+    owner,
     {
       $set: { avatarURL },
     },
     { new: true }
   );
 
-  res.status(200).json(avatarURL);
+  res.status(200).json({ newAvatar });
 };
 
 module.exports = updateAvatar;

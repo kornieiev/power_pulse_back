@@ -22,6 +22,8 @@ const currentUser = async (req, res, next) => {
     age,
   } = userInfo[0];
 
+  // console.log("avatarURL", avatarURL);
+
   const userData = {
     _id,
     userEmail,
@@ -42,4 +44,3 @@ const currentUser = async (req, res, next) => {
   res.status(200).json(userData);
 };
 module.exports = currentUser;
-
