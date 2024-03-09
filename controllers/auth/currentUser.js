@@ -1,22 +1,45 @@
 // const { Metric } = require("../../models");
-// const { User } = require("../../models");
+const { User } = require("../../models");
 
-// const currentUser = async (req, res, next) => {
-//   const { _id: owner, email } = req.user;
+const currentUser = async (req, res, next) => {
+  const { _id: owner, email } = req.user;
 
-//   const userMetric = await Metric.find({ owner });
-//   const userInfo = await User.find({ email });
+  const userInfo = await User.find({ email });
 
-//   await User.updateOne(
-//     { owner },
-//     {
-//       $set: { metrics: userMetric[0] },
-//     },
-//     { new: true }
-//   );
+  const {
+    _id,
+    userEmail,
+    userMetrics,
+    height,
+    avatarURL,
+    blood,
+    currentWeight,
+    desiredWeight,
+    levelActivity,
+    resultBMR,
+    sex,
+    userName,
+    birthday,
+    age,
+  } = userInfo[0];
 
-//   const user = [...userInfo, ...userMetric];
+  const userData = {
+    _id,
+    userEmail,
+    userMetrics,
+    height,
+    avatarURL,
+    blood,
+    currentWeight,
+    desiredWeight,
+    levelActivity,
+    resultBMR,
+    sex,
+    userName,
+    birthday,
+    age,
+  };
 
-//   res.status(200).json(user);
-// };
-// module.exports = currentUser;
+  res.status(200).json(userData);
+};
+module.exports = currentUser;

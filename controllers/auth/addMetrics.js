@@ -15,6 +15,7 @@ const addMetrics = async (req, res, next) => {
     levelActivity,
     age,
     userName,
+    birthday,
   } = req.body;
 
   const resultBMR = BMR(height, currentWeight, levelActivity, age, sex);
@@ -36,6 +37,7 @@ const addMetrics = async (req, res, next) => {
         levelActivity,
         age,
         userName,
+        birthday,
         resultBMR,
         userMetrics: true,
       },

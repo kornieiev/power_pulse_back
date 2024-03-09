@@ -16,9 +16,8 @@ const {
   registerUserSchema,
   loginUserSchema,
   reVerificationSchema,
-  // currentUserSchema,
+  currentUserSchema,
   addMetricsSchema,
-  updateMetricsSchema,
 } = require("../schemas/usersSchemas");
 
 const { validateBody } = require("../helpers");
@@ -57,14 +56,6 @@ usersRouter.put(
   validateBody(addMetricsSchema),
   addMetrics
 );
-
-// //  Updating metrics
-// usersRouter.patch(
-//   "/metrics",
-//   authenticate,
-//   validateBody(updateMetricsSchema),
-//   updateMetrics
-// );
 
 //  User Avatar
 usersRouter.post(
