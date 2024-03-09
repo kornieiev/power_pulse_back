@@ -1,11 +1,11 @@
-const { Schema, model } = require("mongoose");
-// const Joi = require("joi");
-const { handleMongooseError } = require("../helpers");
+const { Schema, model } = require('mongoose')
 
-const exerciseSchema = new Schema({});
+const { handleMongooseError } = require('../helpers')
 
-exerciseSchema.post("save", handleMongooseError);
+const exerciseSchema = new Schema({})
 
-const Exercise = model("exercise", exerciseSchema);
+exerciseSchema.post('save', handleMongooseError)
 
-module.exports = Exercise;
+const Exercise = model('exercise', exerciseSchema)
+
+module.exports = Exercise

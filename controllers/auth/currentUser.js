@@ -1,4 +1,3 @@
-// const { Metric } = require("../../models");
 const { User } = require("../../models");
 
 const currentUser = async (req, res, next) => {
@@ -43,3 +42,4 @@ const currentUser = async (req, res, next) => {
   res.status(200).json(userData);
 };
 module.exports = currentUser;
+

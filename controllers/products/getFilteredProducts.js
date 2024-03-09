@@ -1,21 +1,23 @@
 const { HttpError } = require('../../helpers')
-const { Product, Metric } = require('../../models')
+const { Product, User } = require('../../models')
 
 const getFilteredProducts = async (req, res) => {
 	const { _id: owner } = req.user
 	const { category, title, groupBloodNotAllowed } = req.body
+	console.log(owner)
 
 	const query = {}
 	category && (query.category = category)
 	title && (query.title = { $regex: title, $options: 'i' })
+	console.log(query)
 
-	const [{ blood }] = await Metric.find({ owner })
+	const user = await User.findById(owner)
 
 	if (groupBloodNotAllowed === 'recommended') {
-		query[`groupBloodNotAllowed.${blood}`] = 'false'
+		query[`groupBloodNotAllowed.${user.blood}`] = 'false'
 	}
 	if (groupBloodNotAllowed === 'not recommended') {
-		query[`groupBloodNotAllowed.${blood}`] = 'true'
+		query[`groupBloodNotAllowed.${user.blood}`] = 'true'
 	}
 
 	const data = await Product.find(query)
