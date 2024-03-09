@@ -37,7 +37,6 @@ const loginUser = async (req, res, next) => {
     token,
     email,
     subscription: user.subscription,
-    userInfo: "Daily calorie intake / Daily physical activity",
   });
 };
 

@@ -38,9 +38,11 @@ const userSchema = new Schema(
     },
     height: {
       type: Number,
-      default: 555,
       // required: true,
       min: 150,
+    },
+    name: {
+      type: String,
     },
     userName: {
       type: String,
@@ -86,7 +88,7 @@ const userSchema = new Schema(
   },
   {
     versionKey: false,
-    timestamps: false,
+    timestamps: true,
   }
 );
 userSchema.post("save", handleMongooseError);
