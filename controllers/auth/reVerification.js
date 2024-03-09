@@ -1,5 +1,6 @@
 const { User } = require("../../models");
 const { HttpError, nodemailerFn } = require("../../helpers");
+const sendEmail = require("../../helpers/sendEmail");
 
 const reVerification = async (req, res, next) => {
   const { email } = req.body;
@@ -15,7 +16,11 @@ const reVerification = async (req, res, next) => {
   }
 
   try {
-    nodemailerFn(user.verificationToken, email);
+    // nodemailerFn(user.verificationToken, email);
+
+    console.log("user.verificationToken", user.verificationToken);
+
+    sendEmail(email, user.verificationToken);
 
     res.status(200).json({
       message: "Verification email sent",
