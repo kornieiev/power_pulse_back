@@ -16,7 +16,6 @@ const {
   registerUserSchema,
   loginUserSchema,
   reVerificationSchema,
-  currentUserSchema,
   addMetricsSchema,
 } = require("../schemas/usersSchemas");
 
@@ -42,12 +41,7 @@ usersRouter.post("/login", validateBody(loginUserSchema), loginUser);
 usersRouter.post("/logout", authenticate, logoutUser);
 
 // Current user +
-usersRouter.get(
-  "/current",
-  authenticate,
-  // validateBody(currentUserSchema),
-  currentUser
-);
+usersRouter.get("/current", authenticate, currentUser);
 
 // Add Metrics
 usersRouter.put(
