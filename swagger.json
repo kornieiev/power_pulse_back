@@ -1,0 +1,171 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Power Pulse Back",
+    "description": "Showing off swagger-ui-express",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json"],
+  "servers": [
+    { "url": "http://localhost:3000" },
+    { "url": "https://powerpulseback.onrender.com" }
+  ],
+
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    }
+  ],
+
+  "paths": {
+    "/users/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User registration",
+
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+
+    "/users/verify/{verificationToken}": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "User verification",
+
+        "parameters": [
+          {
+            "in": "path",
+            "name": "verificationToken",
+            "required": true,
+            "type": "string",
+            "description": "Registration token"
+          }
+        ],
+        "security": [],
+
+        "responses": {
+          "200": {
+            "description": "Verification successful",
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["email", "password", "name"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "lola@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qweqwe"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Lola"
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "User's id",
+              "example": "65ed9dd60bd872e7d548338d"
+            },
+            "name": {
+              "type": "string",
+              "description": "User's name",
+              "example": "Lola"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email",
+              "example": "lola@gmail.com"
+            },
+            "verificationToken": {
+              "type": "string",
+              "description": "User's token",
+              "example": "kAt8xt3IgDLD9f_aMJ7mT"
+            }
+          }
+        },
+        "example": [
+          {
+            "id": "65ed9dd60bd872e7d548338d",
+            "name": "Lola",
+            "email": "lola@gmail.com",
+            "verificationToken": "kAt8xt3IgDLD9f_aMJ7mT"
+          }
+        ]
+      },
+      "VerificationRequest": {}
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
