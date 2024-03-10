@@ -29,10 +29,8 @@
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
-
         "parameters": [],
         "security": [{ "Bearer": [] }],
-
         "requestBody": {
           "description": "Registration's object",
           "required": true,
@@ -71,7 +69,6 @@
       "get": {
         "tags": ["Auth"],
         "summary": "User verification",
-
         "parameters": [
           {
             "in": "path",
@@ -82,7 +79,6 @@
           }
         ],
         "security": [],
-
         "responses": {
           "200": {
             "description": "Verification successful",
@@ -100,10 +96,8 @@
       "post": {
         "tags": ["Auth"],
         "summary": "User login",
-
         "parameters": [],
         "security": [],
-
         "requestBody": {
           "description": "Login object",
           "required": true,
@@ -136,6 +130,26 @@
           }
         }
       }
+    },
+
+    "/users/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Current user",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
@@ -163,6 +177,7 @@
           }
         }
       },
+
       "RegistrationResponse": {
         "type": "array",
         "items": {
@@ -200,7 +215,9 @@
           }
         ]
       },
+
       "VerificationRequest": {},
+
       "LoginResponse": {
         "type": "array",
         "items": {
@@ -224,6 +241,7 @@
           "email": "lola@gmail.com"
         }
       },
+
       "LoginRequest": {
         "type": "object",
         "required": ["email", "password"],
@@ -239,6 +257,96 @@
             "description": "User's password",
             "example": "qweqwe"
           }
+        }
+      },
+
+      "CurrentUserResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "User's id",
+              "example": "65ede006a39a5ba68a52068e"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email",
+              "example": "lola@gmail.com"
+            },
+            "userMetrics": {
+              "type": "boolean",
+              "description": "User's metrics",
+              "example": "lola@gmail.com"
+            },
+            "height": {
+              "type": "number",
+              "description": "User's height",
+              "example": "172"
+            },
+            "blood": {
+              "type": "number",
+              "description": "User's blood",
+              "example": "3"
+            },
+            "currentWeight": {
+              "type": "number",
+              "description": "User's currentWeight",
+              "example": "82"
+            },
+            "desiredWeight": {
+              "type": "number",
+              "description": "User's desiredWeight",
+              "example": "78"
+            },
+            "levelActivity": {
+              "type": "number",
+              "description": "User's levelActivity",
+              "example": "4"
+            },
+            "resultBMR": {
+              "type": "number",
+              "description": "User's resultBMR",
+              "example": "1183"
+            },
+            "sex": {
+              "type": "string",
+              "description": "User's sex",
+              "example": "female"
+            },
+            "userName": {
+              "type": "string",
+              "description": "User's name",
+              "example": "Lola"
+            },
+            "birthday": {
+              "type": "string",
+              "description": "User's birthday",
+              "example": "1986-09-06T22:00:00.000Z"
+            },
+            "age": {
+              "type": "number",
+              "description": "User's age",
+              "example": "37"
+            }
+          }
+        },
+        "example": {
+          "_id": "65ede006a39a5ba68a52068e",
+          "email": "lola@gmail.com",
+          "userMetrics": true,
+          "height": 172,
+          "blood": 3,
+          "currentWeight": 82,
+          "desiredWeight": 78,
+          "levelActivity": 4,
+          "resultBMR": 11834,
+          "sex": "female",
+          "userName": "Lola",
+          "birthday": "1986-09-06T22:00:00.000Z",
+          "age": 37
         }
       }
     },
