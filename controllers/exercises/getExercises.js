@@ -2,16 +2,16 @@ const { HttpError } = require('../../helpers')
 const { Exercise } = require('../../models')
 
 const getExercises = async (req, res) => {
-	// const { filter, name, page, limit } = req.query
+	const { bodyPart, equipment, target, page = 1, limit = 10 } = req.query
 
-	const { bodyPart, equipment, target } = req.body
+	const skip = (page - 1) * limit
 
 	const query = {}
 	bodyPart && (query.bodyPart = bodyPart)
 	equipment && (query.equipment = equipment)
 	target && (query.target = target)
 
-	const data = await Exercise.find(query)
+	const data = await Exercise.find(query, '', { skip, limit })
 
 	if (data.length < 1) {
 		throw HttpError(404, 'collections not found')
