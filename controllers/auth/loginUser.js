@@ -11,25 +11,23 @@ const loginUser = async (req, res, next) => {
 
   const user = await User.findOne({ email });
 
-  if (!user.verify) {
-    throw HttpError(401, "Email is not verified");
-  }
-
   if (!user) {
-    throw HttpError(401, "Email or password is wrong");
+    throw HttpError(403, "Email or password is wrong");
   }
 
   const isValidPassword = await bcrypt.compare(password, user.password);
 
   if (!isValidPassword) {
-    throw HttpError(401, "Email or password is wrong");
+    throw HttpError(403, "Email or password is wrong");
   }
 
-  const token =
-    // await
-    jwt.sign({ id: user.id }, JWT_SECRET, {
-      expiresIn: "1d",
-    });
+  if (!user.verify) {
+    throw HttpError(401, "Email is not verified");
+  }
+
+  const token = jwt.sign({ id: user.id }, JWT_SECRET, {
+    expiresIn: "1d",
+  });
 
   await User.findByIdAndUpdate(user.id, { token }, { new: true });
 
