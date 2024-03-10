@@ -1,44 +1,40 @@
-const express = require("express"); // создали веб-сервер
-const morgan = require("morgan"); // для логирования HTTP-запросов
-const cors = require("cors"); // позволяет браузеру разрешать кросс-доменные запросы
-const mongoose = require("mongoose"); // создает подключение к базе данных MongoDB
-const usersRoutes = require("./routes/usersRoutes");
-const diaryRouters = require("./routes/diaryRoutes");
-require("dotenv").config(); // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
-require("colors"); // для подсвечивания информации выводимой в консоли
+const express = require('express') // создали веб-сервер
+const morgan = require('morgan') // для логирования HTTP-запросов
+const cors = require('cors') // позволяет браузеру разрешать кросс-доменные запросы
+const mongoose = require('mongoose') // создает подключение к базе данных MongoDB
 
-const productsRouter = require("./routes/productsRouter");
-const exerciseRouters = require("./routes/exercisesRoutes");
+require('dotenv').config() // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
+require('colors') // для подсвечивания информации выводимой в консоли
+
+const usersRoutes = require('./routes/usersRoutes')
+const diaryRouters = require('./routes/diaryRoutes')
+const productsRouter = require('./routes/productsRouter')
+const exerciseRouters = require('./routes/exercisesRoutes')
+const statisticsRouters = require('./routes/statisticsRoutes')
 
 const {
-  DB_ADMIN_NAME,
-  DB_ADMIN_PASSWORD,
-  DB_CLUSTER_NAME,
-  DB_COLLECTION,
-  PORT,
-} = process.env;
-
+	DB_ADMIN_NAME,
+	DB_ADMIN_PASSWORD,
+	DB_CLUSTER_NAME,
+	DB_COLLECTION,
+	PORT,
+} = process.env
 
 const DB_HOST_NEW = `mongodb+srv://${DB_ADMIN_NAME}:${DB_ADMIN_PASSWORD}@${DB_CLUSTER_NAME}.mongodb.net/${DB_COLLECTION}` // адрес для подключения к БД
 
-
-const app = express();
-
+const app = express()
 
 app.use(morgan('tiny')) // 'combined', 'common', 'short', 'tiny', 'dev'
 app.use(cors())
 app.use(express.json())
 app.use(express.static('public'))
 
+app.use('/users', usersRoutes)
 
-app.use("/users", usersRoutes);
-
-app.use("/training", exerciseRouters);
-app.use("/diary", diaryRouters);
-app.use("/products", productsRouter);
-app.use("/exercises", exerciseRouters);
-
-
+app.use('/diary', diaryRouters)
+app.use('/products', productsRouter)
+app.use('/exercises', exerciseRouters)
+app.use('/statistics', statisticsRouters)
 
 app.use((_, res) => {
 	res.status(404).json({ message: 'Route not found' })
