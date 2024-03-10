@@ -9,14 +9,12 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
     { "url": "http://localhost:3000" },
     { "url": "https://powerpulseback.onrender.com" }
   ],
-
   "tags": [
     {
       "name": "Auth",
@@ -150,6 +148,41 @@
           }
         }
       }
+    },
+
+    "/users/metrics": {
+      "put": {
+        "tags": ["Auth"],
+        "summary": "User metrics",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "addMetrics object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Not enough data for calculate BMR"
+          }
+        }
+      }
     }
   },
 
@@ -177,9 +210,8 @@
           }
         }
       },
-
       "RegistrationResponse": {
-        "type": "array",
+        "type": "object",
         "items": {
           "type": "object",
           "properties": {
@@ -216,10 +248,8 @@
         ]
       },
 
-      "VerificationRequest": {},
-
       "LoginResponse": {
-        "type": "array",
+        "type": "object",
         "items": {
           "type": "object",
           "properties": {
@@ -241,7 +271,6 @@
           "email": "lola@gmail.com"
         }
       },
-
       "LoginRequest": {
         "type": "object",
         "required": ["email", "password"],
@@ -261,14 +290,14 @@
       },
 
       "CurrentUserResponse": {
-        "type": "array",
+        "type": "object",
         "items": {
-          "type": "object",
+          "type": "array",
           "properties": {
             "id": {
               "type": "string",
               "description": "User's id",
-              "example": "65ede006a39a5ba68a52068e"
+              "example": "65ede006a39a5ba68a52069e"
             },
             "email": {
               "type": "string",
@@ -279,7 +308,7 @@
             "userMetrics": {
               "type": "boolean",
               "description": "User's metrics",
-              "example": "lola@gmail.com"
+              "example": true
             },
             "height": {
               "type": "number",
@@ -347,6 +376,186 @@
           "userName": "Lola",
           "birthday": "1986-09-06T22:00:00.000Z",
           "age": 37
+        }
+      },
+
+      "MetricsRequest": {
+        "type": "object",
+        "required": [
+          "height",
+          "currentWeight",
+          "desiredWeight",
+          "blood",
+          "sex",
+          "levelActivity",
+          "age",
+          "userName",
+          "birthday"
+        ],
+        "properties": {
+          "height": {
+            "type": "number",
+            "description": "User's height",
+            "example": "172"
+          },
+          "blood": {
+            "type": "number",
+            "description": "User's blood",
+            "example": "3"
+          },
+          "currentWeight": {
+            "type": "number",
+            "description": "User's currentWeight",
+            "example": "82"
+          },
+          "desiredWeight": {
+            "type": "number",
+            "description": "User's desiredWeight",
+            "example": "78"
+          },
+          "levelActivity": {
+            "type": "number",
+            "description": "User's levelActivity",
+            "example": "4"
+          },
+          "sex": {
+            "type": "string",
+            "description": "User's sex",
+            "example": "female"
+          },
+          "userName": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Lola"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's birthday",
+            "example": "1986-09-06T22:00:00.000Z"
+          },
+          "age": {
+            "type": "number",
+            "description": "User's age",
+            "example": "37"
+          }
+        }
+      },
+      "MetricsResponse": {
+        "type": "object",
+        "items": {
+          "type": "object",
+          "properties": {
+            "updatedUser": {
+              "type": "object",
+              "items": {
+                "email": {
+                  "type": "string",
+                  "description": "User's email",
+                  "format": "email",
+                  "example": "lola@gmail.com"
+                },
+                "verify": {
+                  "type": "boolean",
+                  "description": "User's verify",
+                  "example": true
+                },
+                "userMetrics": {
+                  "type": "boolean",
+                  "description": "User's verify",
+                  "example": true
+                },
+                "name": {
+                  "type": "string",
+                  "description": "User's name",
+                  "example": "Lola"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "description": "User createdAt",
+                  "example": "2024-03-10T16:29:58.855Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "description": "User updatedAt",
+                  "example": "2024-03-10T18:20:27.757Z"
+                },
+                "birthday": {
+                  "type": "string",
+                  "description": "User's birthday",
+                  "example": "1986-09-06T22:00:00.000Z"
+                },
+                "blood": {
+                  "type": "number",
+                  "description": "User's blood",
+                  "example": "3"
+                },
+                "currentWeight": {
+                  "type": "number",
+                  "description": "User's currentWeight",
+                  "example": "82"
+                },
+                "desiredWeight": {
+                  "type": "number",
+                  "description": "User's desiredWeight",
+                  "example": "78"
+                },
+                "height": {
+                  "type": "number",
+                  "description": "User's height",
+                  "example": "172"
+                },
+                "levelActivity": {
+                  "type": "number",
+                  "description": "User's levelActivity",
+                  "example": "4"
+                },
+                "resultBMR": {
+                  "type": "number",
+                  "description": "User's resultBMR",
+                  "example": "1172"
+                },
+                "sex": {
+                  "type": "string",
+                  "description": "User's sex",
+                  "example": "female"
+                },
+                "userName": {
+                  "type": "string",
+                  "description": "User's new name",
+                  "example": "Lola"
+                },
+                "age": {
+                  "type": "number",
+                  "description": "User's age",
+                  "example": "37"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "updatedUser": {
+            "_id": "65ede006a39a5ba68a52068e",
+            "email": "lo@gmail.com",
+            "password": "$2a$10$16.TN7ebg33vGfntBiJz8e.i1JCFK0Ul8.fgluoK9n0E04lnSKNW6",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRlMDA2YTM5YTViYTY4YTUyMDY4ZSIsImlhdCI6MTcxMDA4OTU4MywiZXhwIjoxNzEwMTc1OTgzfQ.hDHbk-RgWmtISkZlccvgnVAngK1ZgJv-Rjj2Jd2giXc",
+            "verify": true,
+            "verificationToken": "",
+            "userMetrics": true,
+            "name": "lo",
+            "createdAt": "2024-03-10T16:29:58.855Z",
+            "updatedAt": "2024-03-10T16:57:01.406Z",
+            "birthday": "1986-09-06T22:00:00.000Z",
+            "blood": 3,
+            "currentWeight": 82,
+            "desiredWeight": 78,
+            "height": 172,
+            "levelActivity": 4,
+            "resultBMR": 11834,
+            "sex": "male",
+            "userName": "Dima",
+            "age": 37
+          }
         }
       }
     },
