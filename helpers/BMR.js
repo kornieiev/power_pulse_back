@@ -1,3 +1,5 @@
+const HttpError = require("./HttpError");
+
 const BMR = (
   height = 0,
   currentWeight = 0,
@@ -19,7 +21,7 @@ const BMR = (
         (levelActivity * lifeStyle[levelActivity])
     );
   } else {
-    throw new Error('Please add your sex in metric - "male" or "female"');
+    throw HttpError(400, "Not enough data for calculate BMR. Enter your sex");
   }
 
   return BMRresult;

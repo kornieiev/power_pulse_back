@@ -22,8 +22,6 @@ const currentUser = async (req, res, next) => {
     age,
   } = userInfo;
 
-  // console.log("avatarURL", avatarURL);
-
   const userData = {
     _id,
     email,
