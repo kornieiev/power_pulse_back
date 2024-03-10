@@ -94,6 +94,48 @@
           }
         }
       }
+    },
+
+    "/users/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+
+        "parameters": [],
+        "security": [],
+
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Email is not verified",
+            "content": {}
+          },
+          "403": {
+            "description": "Email or password is wrong",
+            "content": {}
+          }
+        }
+      }
     }
   },
 
@@ -158,7 +200,47 @@
           }
         ]
       },
-      "VerificationRequest": {}
+      "VerificationRequest": {},
+      "LoginResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string",
+              "description": "User's token",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjY2VhODQyYmFiODdmODk3NmRkYiIsImlhdCI6MTcxMDA4NjA0OSwiZXhwIjoxNzEwMTcyNDQ5fQ.6YG4M_uDBPLKYfB-cwdFlLqgg9mHwtvvIu-qQ6Ozkm0"
+            },
+            "email": {
+              "type": "string",
+              "description": "User's email",
+              "format": "email",
+              "example": "lola@gmail.com"
+            }
+          }
+        },
+        "example": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZWRjY2VhODQyYmFiODdmODk3NmRkYiIsImlhdCI6MTcxMDA4NjA0OSwiZXhwIjoxNzEwMTcyNDQ5fQ.6YG4M_uDBPLKYfB-cwdFlLqgg9mHwtvvIu-qQ6Ozkm0",
+          "email": "lola@gmail.com"
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "lola@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qweqwe"
+          }
+        }
+      }
     },
     "securitySchemes": {
       "Bearer": {
