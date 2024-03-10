@@ -4,7 +4,6 @@ const currentUser = async (req, res, next) => {
   const { _id: owner } = req.user;
 
   const userInfo = await User.findById(owner);
-  console.log("userInfo", userInfo);
 
   const {
     _id,
