@@ -2,6 +2,12 @@ const express = require('express') // создали веб-сервер
 const morgan = require('morgan') // для логирования HTTP-запросов
 const cors = require('cors') // позволяет браузеру разрешать кросс-доменные запросы
 const mongoose = require('mongoose') // создает подключение к базе данных MongoDB
+const usersRoutes = require('./routes/usersRoutes')
+const diaryRouters = require('./routes/diaryRoutes')
+require('dotenv').config() // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
+require('colors') // для подсвечивания информации выводимой в консоли
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./swagger.json')
 
 require('dotenv').config() // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
 require('colors') // для подсвечивания информации выводимой в консоли
@@ -30,11 +36,12 @@ app.use(express.json())
 app.use(express.static('public'))
 
 app.use('/users', usersRoutes)
-
 app.use('/diary', diaryRouters)
 app.use('/products', productsRouter)
 app.use('/exercises', exerciseRouters)
 app.use('/statistics', statisticsRouters)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use((_, res) => {
 	res.status(404).json({ message: 'Route not found' })
