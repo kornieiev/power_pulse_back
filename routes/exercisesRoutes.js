@@ -8,7 +8,7 @@ const { authenticate } = require('../middlewares')
 
 const exerciseRouters = express.Router()
 
-// get all filters exercises
+// get  filters exercises
 exerciseRouters.get('/filters', authenticate, getExercisesFilters)
 
 // get  exercises
