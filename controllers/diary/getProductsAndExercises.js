@@ -7,7 +7,7 @@ const getProductsAndExercises = async (req, res) => {
 	const [products, exercises] = await Promise.all([
 		DiaryProduct.find({ owner }).populate(
 			'productArr.productId',
-			'title category'
+			'title category groupBloodNotAllowed'
 		),
 		DiaryExercise.find({ owner }).populate(
 			'exerciseArr.exerciseId',

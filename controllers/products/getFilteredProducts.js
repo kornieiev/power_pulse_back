@@ -9,7 +9,6 @@ const getFilteredProducts = async (req, res) => {
 	const query = {}
 	category && (query.category = category)
 	title && (query.title = { $regex: title, $options: 'i' })
-	console.log(query)
 
 	const user = await User.findById(owner)
 

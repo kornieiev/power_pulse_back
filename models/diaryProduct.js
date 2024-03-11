@@ -21,6 +21,7 @@ const diaryProductSchema = new Schema(
 			type: Number,
 			default: 0,
 		},
+
 		productArr: [
 			{
 				_id: false,
@@ -39,6 +40,7 @@ const diaryProductSchema = new Schema(
 					minimum: 1,
 					require: true,
 				},
+				recommended: { type: Boolean },
 			},
 		],
 	},
