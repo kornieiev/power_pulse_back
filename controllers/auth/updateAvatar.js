@@ -4,7 +4,6 @@ const updateAvatar = async (req, res) => {
   const { _id: owner, email } = req.user;
 
   const avatarURL = req.file.path;
-  console.log("updateAvatar-avatarURL", avatarURL);
 
   const newAvatar = await User.findByIdAndUpdate(
     owner,
@@ -14,7 +13,7 @@ const updateAvatar = async (req, res) => {
     { new: true }
   );
 
-  res.status(200).json({ newAvatar });
+  res.status(200).json({ avatarURL });
 };
 
 module.exports = updateAvatar;

@@ -10,22 +10,22 @@
     }
   },
   "consumes": ["application/json", "multipart/form-data"],
-  "produces": ["application/json"],
+  "produces": ["application/json", "multipart/form-data"],
   "servers": [
     { "url": "http://localhost:3000" },
     { "url": "https://powerpulseback.onrender.com" }
   ],
   "tags": [
     {
-      "name": "Auth",
-      "description": "Authorization endpoints"
+      "name": "Authorization",
+      "description": "Authorizationorization endpoints"
     }
   ],
 
   "paths": {
     "/users/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": ["Authorization"],
         "summary": "User registration",
         "parameters": [],
         "security": [{ "Bearer": [] }],
@@ -65,7 +65,7 @@
 
     "/users/verify/{verificationToken}": {
       "get": {
-        "tags": ["Auth"],
+        "tags": ["Authorization"],
         "summary": "User verification",
         "parameters": [
           {
@@ -92,7 +92,7 @@
 
     "/users/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": ["Authorization"],
         "summary": "User login",
         "parameters": [],
         "security": [],
@@ -132,8 +132,8 @@
 
     "/users/current": {
       "get": {
-        "tags": ["Auth"],
-        "summary": "Current user",
+        "tags": ["Authorization"],
+        "summary": "Current user data",
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -152,8 +152,8 @@
 
     "/users/metrics": {
       "put": {
-        "tags": ["Auth"],
-        "summary": "User metrics",
+        "tags": ["Authorization"],
+        "summary": "Add user metrics",
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "requestBody": {
@@ -180,6 +180,59 @@
           },
           "400": {
             "description": "Not enough data for calculate BMR"
+          }
+        }
+      }
+    },
+
+    "/users/avatars": {
+      "post": {
+        "tags": ["Authorization"],
+        "summary": "Add / change user avatar",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Change avatar object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AvatarRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AvatarResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/users/logout": {
+      "post": {
+        "tags": ["Authorization"],
+        "summary": "User logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "LogOut Successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -557,6 +610,44 @@
             "age": 37
           }
         }
+      },
+
+      "AvatarRequest": {
+        "type": "object",
+        "properties": {
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "format": "binary"
+          }
+        }
+      },
+      "AvatarResponse": {
+        "type": "object",
+        "items": {
+          "type": "object",
+          "properties": {
+            "avatarURL": {
+              "type": "string",
+              "description": "User's avatarURL",
+              "example": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710153959/avatars/garfield.png.png"
+            }
+          }
+        },
+        "example": [
+          {
+            "avatarURL": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710153959/avatars/garfield.png.png"
+          }
+        ]
+      },
+
+      "LogoutResponse": {
+        "type": "object",
+        "items": {
+          "type": "object",
+          "properties": {}
+        },
+        "example": "LogOut Successful"
       }
     },
     "securitySchemes": {
