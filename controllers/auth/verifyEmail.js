@@ -13,5 +13,7 @@ const verifyEmail = async (req, res, next) => {
   });
   res.status(200).json({ message: "Verification successful" });
 };
+//   res.status(200).json({ message: "Verification successful please push this link: <a href="https://deadmakar.github.io/PowerPulseTeamPoject/signin/">Sign in</a>" });
+// };
 
 module.exports = verifyEmail;
