@@ -1,13 +1,11 @@
-const { default: mongoose } = require('mongoose')
 const { HttpError } = require('../../helpers')
 const { DiaryProduct } = require('../../models')
-const ObjectId = mongoose.Types.ObjectId
 
 const deleteUserProducts = async (req, res) => {
 	const { _id: owner } = req.user
 	const { id } = req.params
 	const { date } = req.body
-	// console.log(id)
+
 	const findProduct = await DiaryProduct.findOne({ owner, date })
 
 	if (!findProduct) {
@@ -15,14 +13,10 @@ const deleteUserProducts = async (req, res) => {
 	}
 
 	const index = findProduct.productArr.findIndex(product => {
-		const ind = product.productId._id === ObjectId(id)
-		// console.log('productId', product.productId._id)
-
-		// console.log('queryId', ObjectId(id))
-
+		const ind = product.productId._id.toString() === id.toString()
 		return ind
 	})
-	console.log(index)
+
 	const result = await DiaryProduct.findByIdAndUpdate(
 		findProduct._id,
 		{
