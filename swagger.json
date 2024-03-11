@@ -35,7 +35,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistrationRequest"
+                "$ref": "#/components/schemas/Registration_Req"
               }
             }
           }
@@ -46,7 +46,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistrationResponse"
+                  "$ref": "#/components/schemas/Registration_Res"
                 }
               }
             }
@@ -102,7 +102,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginRequest"
+                "$ref": "#/components/schemas/Login_Req"
               }
             }
           }
@@ -113,7 +113,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/Login_Res"
                 }
               }
             }
@@ -141,7 +141,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CurrentUserResponse"
+                  "$ref": "#/components/schemas/CurrentUser_Res"
                 }
               }
             }
@@ -162,7 +162,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MetricsRequest"
+                "$ref": "#/components/schemas/Metrics_Req"
               }
             }
           }
@@ -173,7 +173,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MetricsResponse"
+                  "$ref": "#/components/schemas/Metrics_Res"
                 }
               }
             }
@@ -197,7 +197,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/AvatarRequest"
+                "$ref": "#/components/schemas/Avatar_Req"
               }
             }
           }
@@ -208,7 +208,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AvatarResponse"
+                  "$ref": "#/components/schemas/Avatar_Res"
                 }
               }
             }
@@ -229,7 +229,92 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LogoutResponse"
+                  "$ref": "#/components/schemas/Logout_Res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/diary/": {
+      "get": {
+        "tags": ["Diary"],
+        "summary": "Get all data from diary",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllDiaryData_Res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/diary/products": {
+      "post": {
+        "tags": ["Diary"],
+        "summary": "Add product to diary",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Add product",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddProductToDiary_Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddProductToDiary_Res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/diary/exercises": {
+      "post": {
+        "tags": ["Diary"],
+        "summary": "Add exercises to diary",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Add exercises",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddExercisesToDiary_Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddExercisesToDiary_Res"
                 }
               }
             }
@@ -241,7 +326,7 @@
 
   "components": {
     "schemas": {
-      "RegistrationRequest": {
+      "Registration_Req": {
         "type": "object",
         "required": ["email", "password", "name"],
         "properties": {
@@ -263,7 +348,7 @@
           }
         }
       },
-      "RegistrationResponse": {
+      "Registration_Res": {
         "type": "object",
         "items": {
           "type": "object",
@@ -301,7 +386,24 @@
         ]
       },
 
-      "LoginResponse": {
+      "Login_Req": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "lola@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qweqwe"
+          }
+        }
+      },
+      "Login_Res": {
         "type": "object",
         "items": {
           "type": "object",
@@ -324,25 +426,8 @@
           "email": "lola@gmail.com"
         }
       },
-      "LoginRequest": {
-        "type": "object",
-        "required": ["email", "password"],
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "User's email",
-            "format": "email",
-            "example": "lola@gmail.com"
-          },
-          "password": {
-            "type": "string",
-            "description": "User's password",
-            "example": "qweqwe"
-          }
-        }
-      },
 
-      "CurrentUserResponse": {
+      "CurrentUser_Res": {
         "type": "object",
         "items": {
           "type": "array",
@@ -432,7 +517,7 @@
         }
       },
 
-      "MetricsRequest": {
+      "Metrics_Req": {
         "type": "object",
         "required": [
           "height",
@@ -493,7 +578,7 @@
           }
         }
       },
-      "MetricsResponse": {
+      "Metrics_Res": {
         "type": "object",
         "items": {
           "type": "object",
@@ -612,7 +697,7 @@
         }
       },
 
-      "AvatarRequest": {
+      "Avatar_Req": {
         "type": "object",
         "properties": {
           "avatar": {
@@ -622,7 +707,7 @@
           }
         }
       },
-      "AvatarResponse": {
+      "Avatar_Res": {
         "type": "object",
         "items": {
           "type": "object",
@@ -641,13 +726,283 @@
         ]
       },
 
-      "LogoutResponse": {
+      "Logout_Res": {
         "type": "object",
         "items": {
           "type": "object",
           "properties": {}
         },
         "example": "LogOut Successful"
+      },
+
+      "GetAllDiaryData_Res": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "_id",
+                "example": "65ef0477f3c29daf00860f4f"
+              },
+              "owner": {
+                "type": "string",
+                "description": "Owner Id",
+                "example": "65ed9dd60bd872e7d548338d"
+              },
+              "date": {
+                "type": "string",
+                "description": "Product date",
+                "example": "10-09-2000"
+              },
+              "consumedCalories": {
+                "type": "integer",
+                "description": "consumedCalories",
+                "example": 150
+              },
+              "totalProductWeight": {
+                "type": "integer",
+                "description": "totalProductWeight",
+                "example": 300
+              },
+              "productArr": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "productId": {
+                      "type": "string",
+                      "description": "productId",
+                      "example": "65e62839e1a05a278a7cf308"
+                    }
+                  },
+                  "calories": {
+                    "type": "integer",
+                    "description": "calories",
+                    "example": 150
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "description": "amount",
+                    "example": 300
+                  }
+                }
+              }
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "65edd7a4d0fb93a4da005a4b",
+            "owner": "65edccea842bab87f8976ddb",
+            "date": "10-03-2024",
+            "consumedCalories": 200,
+            "totalProductWeight": 350,
+            "productArr": [
+              {
+                "productId": "5d51694902b2373622ff5773",
+                "calories": 200,
+                "amount": 350
+              }
+            ]
+          }
+        ]
+      },
+
+      "AddProductToDiary_Req": {
+        "type": "object",
+        "required": ["productId", "date", "calories", "amount"],
+        "properties": {
+          "productId": {
+            "type": "string",
+            "description": "ProductId",
+            "example": "65e62839e1a05a278a7cf308"
+          },
+          "date": {
+            "type": "string",
+            "description": "Product date",
+            "example": "10-09-2000"
+          },
+          "calories": {
+            "type": "integer",
+            "description": "Product calories",
+            "example": 150
+          },
+          "amount": {
+            "type": "integer",
+            "description": "Product amount",
+            "example": 300
+          }
+        }
+      },
+      "AddProductToDiary_Res": {
+        "type": "object",
+        "items": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "type": "string",
+              "description": "Owner Id",
+              "example": "65ed9dd60bd872e7d548338d"
+            },
+            "date": {
+              "type": "string",
+              "description": "Product date",
+              "example": "10-09-2000"
+            },
+            "consumedCalories": {
+              "type": "integer",
+              "description": "consumedCalories",
+              "example": 150
+            },
+            "totalProductWeight": {
+              "type": "integer",
+              "description": "totalProductWeight",
+              "example": 300
+            },
+            "productArr": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "string",
+                    "description": "productId",
+                    "example": "65e62839e1a05a278a7cf308"
+                  }
+                },
+                "calories": {
+                  "type": "integer",
+                  "description": "calories",
+                  "example": 150
+                },
+                "amount": {
+                  "type": "integer",
+                  "description": "amount",
+                  "example": 300
+                }
+              }
+            },
+            "_id": {
+              "type": "string",
+              "description": "_id",
+              "example": "65ef0477f3c29daf00860f4f"
+            }
+          }
+        },
+        "example": {
+          "owner": "65edccea842bab87f8976ddb",
+          "date": "10-09-2000",
+          "consumedCalories": 150,
+          "totalProductWeight": 300,
+          "productArr": [
+            {
+              "productId": "65e62839e1a05a278a7cf308",
+              "calories": 150,
+              "amount": 300
+            }
+          ],
+          "_id": "65ef0477f3c29daf00860f4f"
+        }
+      },
+
+      "AddExercisesToDiary_Req": {
+        "type": "object",
+        "required": ["exerciseId", "date", "calories", "time"],
+        "properties": {
+          "exerciseId": {
+            "type": "string",
+            "description": "exerciseId",
+            "example": "65e627e6e1a05a278a7cf2fb"
+          },
+          "date": {
+            "type": "string",
+            "description": "Exercises date",
+            "example": "10-09-2000"
+          },
+          "calories": {
+            "type": "integer",
+            "description": "Exercises calories",
+            "example": 350
+          },
+          "time": {
+            "type": "integer",
+            "description": "Exercises time",
+            "example": 15
+          }
+        }
+      },
+      "AddExercisesToDiary_Res": {
+        "type": "object",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "_id",
+              "example": "65ef0477f3c29daf00860f4f"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Owner Id",
+              "example": "65ed9dd60bd872e7d548338d"
+            },
+            "date": {
+              "type": "string",
+              "description": "Product date",
+              "example": "10-09-2000"
+            },
+            "consumedCalories": {
+              "type": "integer",
+              "description": "consumedCalories",
+              "example": 150
+            },
+            "totalProductWeight": {
+              "type": "integer",
+              "description": "totalProductWeight",
+              "example": 300
+            },
+            "productArr": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "exerciseId": {
+                    "type": "string",
+                    "description": "exerciseId",
+                    "example": "65e627e6e1a05a278a7cf2fb"
+                  }
+                },
+                "calories": {
+                  "type": "integer",
+                  "description": "calories",
+                  "example": 350
+                },
+                "time": {
+                  "type": "integer",
+                  "description": "time",
+                  "example": 15
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "owner": "65edccea842bab87f8976ddb",
+          "date": "10-09-2000",
+          "burnedCalories": 350,
+          "totalExerciseTime": 15,
+          "exerciseArr": [
+            {
+              "exerciseId": "65e627e6e1a05a278a7cf2fb",
+              "calories": 350,
+              "time": 15
+            }
+          ],
+          "_id": "65ef0f255a84e6a9207f48c0"
+        }
       }
     },
     "securitySchemes": {
