@@ -13,7 +13,7 @@ const deleteUserExercises = async (req, res) => {
 	}
 
 	const index = findExercise.exerciseArr.findIndex(product => {
-		const ind = product.exerciseId === id
+		const ind = product.exerciseId._id.toString() === id.toString()
 		return ind
 	})
 

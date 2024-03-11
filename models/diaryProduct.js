@@ -24,7 +24,7 @@ const diaryProductSchema = new Schema(
 
 		productArr: [
 			{
-				_id: false,
+				// _id: false,
 				productId: {
 					type: Schema.Types.ObjectId,
 					ref: 'products',
@@ -40,7 +40,10 @@ const diaryProductSchema = new Schema(
 					minimum: 1,
 					require: true,
 				},
-				recommended: { type: Boolean },
+				// populate: {
+				// 	type: Schema.Types.ObjectId,
+				// 	ref: 'products',
+				// },
 			},
 		],
 	},
