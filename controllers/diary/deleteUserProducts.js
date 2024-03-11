@@ -4,6 +4,7 @@ const { DiaryProduct } = require('../../models')
 const deleteUserProducts = async (req, res) => {
 	const { _id: owner } = req.user
 	const { id } = req.params
+
 	const { date } = req.body
 
 	const findProduct = await DiaryProduct.findOne({ owner, date })
@@ -13,7 +14,7 @@ const deleteUserProducts = async (req, res) => {
 	}
 
 	const index = findProduct.productArr.findIndex(product => {
-		const ind = product.productId._id.toString() === id.toString()
+		const ind = product._id.toString() === id.toString()
 		return ind
 	})
 
@@ -24,7 +25,7 @@ const deleteUserProducts = async (req, res) => {
 				consumedCalories: -findProduct.productArr[index].calories,
 				totalProductWeight: -findProduct.productArr[index].amount,
 			},
-			$pull: { productArr: { productId: id } },
+			$pull: { productArr: { _id: id } },
 		},
 		{ new: true }
 	)

@@ -13,7 +13,7 @@ const deleteUserExercises = async (req, res) => {
 	}
 
 	const index = findExercise.exerciseArr.findIndex(product => {
-		const ind = product.exerciseId._id.toString() === id.toString()
+		const ind = product._id.toString() === id.toString()
 		return ind
 	})
 
@@ -24,7 +24,7 @@ const deleteUserExercises = async (req, res) => {
 				burnedCalories: -findExercise.exerciseArr[index].calories,
 				totalExerciseTime: -findExercise.exerciseArr[index].time,
 			},
-			$pull: { exerciseArr: { exerciseId: id } },
+			$pull: { exerciseArr: { _id: id } },
 		},
 		{ new: true }
 	)

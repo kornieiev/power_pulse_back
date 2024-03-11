@@ -40,10 +40,6 @@ const diaryProductSchema = new Schema(
 					minimum: 1,
 					require: true,
 				},
-				// populate: {
-				// 	type: Schema.Types.ObjectId,
-				// 	ref: 'products',
-				// },
 			},
 		],
 	},
