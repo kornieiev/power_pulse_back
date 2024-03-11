@@ -321,6 +321,46 @@
           }
         }
       }
+    },
+
+    "/diary/exercises/{id}": {
+      "delete": {
+        "tags": ["Diary"],
+        "summary": "Delete exercise from diary",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "exercises id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Delete exercise",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddExercisesToDiary_Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddExercisesToDiary_Res"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
