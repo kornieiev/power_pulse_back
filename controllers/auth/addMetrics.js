@@ -45,8 +45,6 @@ const addMetrics = async (req, res, next) => {
     }
   );
 
-  console.log("updatedUser", updatedUser);
-
   res.status(200).json({
     updatedUser: {
       email: updatedUser.email,
