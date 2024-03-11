@@ -291,6 +291,49 @@
       }
     },
 
+    "/diary/products/{id}": {
+      "delete": {
+        "tags": ["Diary"],
+        "summary": "Delete product from diary",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "product id"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Delete product",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteProductFromDiary_Req"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Delete Product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteProductFromDiary_Res"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+
     "/diary/exercises": {
       "post": {
         "tags": ["Diary"],
@@ -338,26 +381,29 @@
         ],
         "security": [{ "Bearer": [] }],
         "requestBody": {
-          "description": "Delete exercise",
+          "description": "Delete Exercise",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddExercisesToDiary_Req"
+                "$ref": "#/components/schemas/DeleteExercisesFromDiary_Req"
               }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Created",
+          "200": {
+            "description": "Deleted",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AddExercisesToDiary_Res"
+                  "$ref": "#/components/schemas/DeleteExercisesFromDiary_Res"
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not found"
           }
         }
       }
@@ -948,6 +994,62 @@
         }
       },
 
+      "DeleteProductFromDiary_Req": {
+        "type": "object",
+        "required": ["date"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Product date",
+            "example": "10-09-2000"
+          }
+        }
+      },
+      "DeleteProductFromDiary_Res": {
+        "type": "object",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "_id",
+              "example": "65e627e6e1a05a278a7cf2fb"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Owner Id",
+              "example": "65ed9dd60bd872e7d548338d"
+            },
+            "date": {
+              "type": "string",
+              "description": "Product date",
+              "example": "10-09-2000"
+            },
+            "burnedCalories": {
+              "type": "integer",
+              "description": "burnedCalories",
+              "example": 150
+            },
+            "totalExerciseTime": {
+              "type": "integer",
+              "description": "totalExerciseTime",
+              "example": 300
+            },
+            "exerciseArr": {
+              "type": "array"
+            }
+          }
+        },
+        "example": {
+          "_id": "65ede130d0fb93a4da005bb5",
+          "owner": "65edccea842bab87f8976ddb",
+          "date": "10-03-2024",
+          "burnedCalories": 0,
+          "totalExerciseTime": 0,
+          "exerciseArr": []
+        }
+      },
+
       "AddExercisesToDiary_Req": {
         "type": "object",
         "required": ["exerciseId", "date", "calories", "time"],
@@ -1042,6 +1144,62 @@
             }
           ],
           "_id": "65ef0f255a84e6a9207f48c0"
+        }
+      },
+
+      "DeleteExercisesFromDiary_Req": {
+        "type": "object",
+        "required": ["date"],
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "Exercises date",
+            "example": "10-09-2000"
+          }
+        }
+      },
+      "DeleteExercisesFromDiary_Res": {
+        "type": "object",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "_id",
+              "example": "65e627e6e1a05a278a7cf2fb"
+            },
+            "owner": {
+              "type": "string",
+              "description": "Owner Id",
+              "example": "65ed9dd60bd872e7d548338d"
+            },
+            "date": {
+              "type": "string",
+              "description": "Product date",
+              "example": "10-09-2000"
+            },
+            "burnedCalories": {
+              "type": "integer",
+              "description": "burnedCalories",
+              "example": 150
+            },
+            "totalExerciseTime": {
+              "type": "integer",
+              "description": "totalExerciseTime",
+              "example": 300
+            },
+            "exerciseArr": {
+              "type": "array"
+            }
+          }
+        },
+        "example": {
+          "_id": "65ede130d0fb93a4da005bb5",
+          "owner": "65edccea842bab87f8976ddb",
+          "date": "10-03-2024",
+          "burnedCalories": 0,
+          "totalExerciseTime": 0,
+          "exerciseArr": []
         }
       }
     },
