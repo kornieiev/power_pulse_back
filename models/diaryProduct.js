@@ -5,7 +5,7 @@ const diaryProductSchema = new Schema(
 	{
 		owner: {
 			type: Schema.Types.ObjectId,
-			ref: 'product',
+			ref: 'products',
 			required: true,
 		},
 		date: {
@@ -25,7 +25,8 @@ const diaryProductSchema = new Schema(
 			{
 				_id: false,
 				productId: {
-					type: String,
+					type: Schema.Types.ObjectId,
+					ref: 'products',
 					required: true,
 				},
 				calories: {
