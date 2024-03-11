@@ -23,10 +23,10 @@ const getFilteredProducts = async (req, res) => {
   const data = await Product.find(query);
 
   if (data.length < 1) {
-    throw HttpError(404, "collections not found");
+    throw HttpError(404, "Collection not found");
   }
 
-  res.json(data);
+  res.status(200).json(data);
 };
 
 module.exports = getFilteredProducts;

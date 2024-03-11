@@ -407,6 +407,74 @@
           }
         }
       }
+    },
+
+    "/products/categories": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get All Products",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductsCategories_Res"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/products/filters": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get Products By Filter",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "required": true,
+            "type": "string",
+            "description": "category name"
+          },
+          {
+            "in": "query",
+            "name": "title",
+            "required": true,
+            "type": "string",
+            "description": "title name"
+          },
+          {
+            "in": "query",
+            "name": "groupBloodNotAllowed",
+            "required": true,
+            "type": "string",
+            "description": "groupBloodNotAllowed name"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductsFilter_Res"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Collection not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
 
@@ -1201,6 +1269,69 @@
           "totalExerciseTime": 0,
           "exerciseArr": []
         }
+      },
+
+      "ProductsCategories_Res": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": [
+          "alcoholic drinks",
+          "berries",
+          "cereals",
+          "dairy",
+          "dried fruits",
+          "eggs",
+          "fish",
+          "flour",
+          "fruits",
+          "meat",
+          "mushrooms",
+          "nuts",
+          "oils and fats",
+          "poppy",
+          "sausage",
+          "seeds",
+          "sesame",
+          "soft drinks",
+          "vegetables and herbs"
+        ]
+      },
+
+      "ProductsFilter_Res": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        },
+        "example": [
+          {
+            "groupBloodNotAllowed": {
+              "1": false,
+              "2": false,
+              "3": false,
+              "4": false
+            },
+            "_id": "5d51694902b2373622ff5b72",
+            "weight": 100,
+            "calories": 90,
+            "category": "fish",
+            "title": "Lobster"
+          },
+          {
+            "groupBloodNotAllowed": {
+              "1": false,
+              "2": false,
+              "3": false,
+              "4": false
+            },
+            "_id": "5d51694902b2373622ff5b64",
+            "weight": 100,
+            "calories": 88,
+            "category": "fish",
+            "title": "Lobster (neck meat)"
+          }
+        ]
       }
     },
     "securitySchemes": {
