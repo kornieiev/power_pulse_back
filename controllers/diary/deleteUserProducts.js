@@ -1,8 +1,7 @@
-const { HttpError } = require('../../helpers')
-const { DiaryProduct } = require('../../models')
+const { HttpError } = require("../../helpers");
+const { DiaryProduct } = require("../../models");
 
 const deleteUserProducts = async (req, res) => {
-
   const { _id: owner } = req.user;
   const { id } = req.params;
   const { date } = req.body;
@@ -18,6 +17,11 @@ const deleteUserProducts = async (req, res) => {
     return ind;
   });
   console.log("index", index);
+
+  if (index === -1) {
+    res.status(404).json("Product not found");
+    return;
+  }
 
   const result = await DiaryProduct.findByIdAndUpdate(
     findProduct._id,
@@ -36,4 +40,3 @@ const deleteUserProducts = async (req, res) => {
 };
 
 module.exports = deleteUserProducts;
-

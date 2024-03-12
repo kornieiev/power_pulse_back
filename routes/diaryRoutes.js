@@ -8,6 +8,7 @@ const {
   addUserProducts,
   deleteUserProducts,
   getProductsAndExercises,
+  getCommonDataByDate,
 } = require("../controllers/diary");
 const { validateBody } = require("../helpers");
 
@@ -34,6 +35,9 @@ diaryRouter.post(
 
 // get product and exercises
 diaryRouter.get("/", authenticate, getProductsAndExercises);
+
+// get common data by Date - query
+diaryRouter.get("/common/:date", authenticate, getCommonDataByDate);
 
 // delete products
 diaryRouter.delete(

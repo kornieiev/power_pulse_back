@@ -1,15 +1,17 @@
-const { controllerWrapper } = require('../../helpers')
+const { controllerWrapper } = require("../../helpers");
 
-const addUserProducts = require('./addUserProducts')
-const addUserExercises = require('./addUserExercises')
-const getProductsAndExercises = require('./getProductsAndExercises')
-const deleteUserProducts = require('./deleteUserProducts')
-const deleteUserExercises = require('./deleteUserExercises')
+const addUserProducts = require("./addUserProducts");
+const addUserExercises = require("./addUserExercises");
+const getProductsAndExercises = require("./getProductsAndExercises");
+const deleteUserProducts = require("./deleteUserProducts");
+const deleteUserExercises = require("./deleteUserExercises");
+const getCommonDataByDate = require("./getCommonDataByDate");
 
 module.exports = {
-	addUserProducts: controllerWrapper(addUserProducts),
-	addUserExercises: controllerWrapper(addUserExercises),
-	getProductsAndExercises: controllerWrapper(getProductsAndExercises),
-	deleteUserProducts: controllerWrapper(deleteUserProducts),
-	deleteUserExercises: controllerWrapper(deleteUserExercises),
-}
+  addUserProducts: controllerWrapper(addUserProducts),
+  addUserExercises: controllerWrapper(addUserExercises),
+  getProductsAndExercises: controllerWrapper(getProductsAndExercises),
+  deleteUserProducts: controllerWrapper(deleteUserProducts),
+  deleteUserExercises: controllerWrapper(deleteUserExercises),
+  getCommonDataByDate: controllerWrapper(getCommonDataByDate),
+};
