@@ -478,6 +478,33 @@
           }
         }
       }
+    },
+
+    "/diary/common/{date}": {
+      "get": {
+        "tags": ["Diary"],
+        "summary": "Get Common Data By Date",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "type": "string",
+            "description": "get common data by date",
+            "example": "12-03-2024"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "Information by your request not found",
+            "content": {}
+          }
+        }
+      }
     }
   },
 
