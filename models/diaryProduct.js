@@ -21,9 +21,10 @@ const diaryProductSchema = new Schema(
 			type: Number,
 			default: 0,
 		},
+
 		productArr: [
 			{
-				_id: false,
+				// _id: false,
 				productId: {
 					type: Schema.Types.ObjectId,
 					ref: 'products',

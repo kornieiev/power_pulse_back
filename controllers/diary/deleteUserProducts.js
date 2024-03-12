@@ -1,7 +1,8 @@
-const { HttpError } = require("../../helpers");
-const { DiaryProduct } = require("../../models");
+const { HttpError } = require('../../helpers')
+const { DiaryProduct } = require('../../models')
 
 const deleteUserProducts = async (req, res) => {
+
   const { _id: owner } = req.user;
   const { id } = req.params;
   const { date } = req.body;
@@ -35,3 +36,4 @@ const deleteUserProducts = async (req, res) => {
 };
 
 module.exports = deleteUserProducts;
+
