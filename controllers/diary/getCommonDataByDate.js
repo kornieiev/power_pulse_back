@@ -4,16 +4,15 @@ const { DiaryProduct } = require("../../models");
 const getCommonDataByDate = async (req, res) => {
   const { _id: owner } = req.user;
 
-  console.log("owner", owner);
-
   const { date } = req.params;
-  console.log("date", date);
 
-  const findInfo = await DiaryProduct.find({ owner, date });
+  const ExerciseInfo = await DiaryExercise.find({ owner, date });
 
-  console.log("findInfo", findInfo);
+  const ProductInfo = await DiaryProduct.find({ owner, date });
 
-  res.status(200).json({ findInfo });
+  const allData = [...ProductInfo, ...ExerciseInfo];
+
+  res.status(200).json({ allData });
 };
 
 module.exports = getCommonDataByDate;
