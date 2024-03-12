@@ -20,6 +20,7 @@ const currentUser = async (req, res, next) => {
     userName,
     birthday,
     age,
+    createdAt,
   } = userInfo;
 
   const userData = {
@@ -37,6 +38,7 @@ const currentUser = async (req, res, next) => {
     userName,
     birthday,
     age,
+    createdAt,
   };
 
   res.status(200).json(userData);
