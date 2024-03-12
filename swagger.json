@@ -329,6 +329,9 @@
           },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "description": "_____ is not valid id"
           }
         }
       }
