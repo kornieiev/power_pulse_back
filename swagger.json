@@ -301,7 +301,7 @@
             "name": "id",
             "required": true,
             "type": "string",
-            "description": "product id"
+            "description": "productArr._id"
           }
         ],
         "security": [{ "Bearer": [] }],
@@ -318,7 +318,7 @@
         },
         "responses": {
           "200": {
-            "description": "Delete Product",
+            "description": "Product Deleted",
             "content": {
               "application/json": {
                 "schema": {
