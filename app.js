@@ -1,11 +1,11 @@
-const express = require("express"); // создали веб-сервер
-const morgan = require("morgan"); // для логирования HTTP-запросов
-const cors = require("cors"); // позволяет браузеру разрешать кросс-доменные запросы
-const mongoose = require("mongoose"); // создает подключение к базе данных MongoDB
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-require("dotenv").config(); // ищет в проекте файл .env и читает из него указанные в нем КЛЮЧ=значение
-require("colors"); // для подсвечивания информации выводимой в консоли
+require("dotenv").config();
+require("colors");
 
 const usersRoutes = require("./routes/usersRoutes");
 const diaryRouters = require("./routes/diaryRoutes");
@@ -28,7 +28,8 @@ const app = express();
 app.use(morgan("tiny")); // 'combined', 'common', 'short', 'tiny', 'dev'
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+
+// app.use(express.static("public"));
 
 app.use("/users", usersRoutes);
 app.use("/diary", diaryRouters);

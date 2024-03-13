@@ -5,7 +5,6 @@ const addUserExercises = require("./addUserExercises");
 const getProductsAndExercises = require("./getProductsAndExercises");
 const deleteUserProducts = require("./deleteUserProducts");
 const deleteUserExercises = require("./deleteUserExercises");
-const getCommonDataByDate = require("./getCommonDataByDate");
 
 module.exports = {
   addUserProducts: controllerWrapper(addUserProducts),
@@ -13,5 +12,4 @@ module.exports = {
   getProductsAndExercises: controllerWrapper(getProductsAndExercises),
   deleteUserProducts: controllerWrapper(deleteUserProducts),
   deleteUserExercises: controllerWrapper(deleteUserExercises),
-  getCommonDataByDate: controllerWrapper(getCommonDataByDate),
 };

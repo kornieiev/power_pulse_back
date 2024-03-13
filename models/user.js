@@ -19,12 +19,10 @@ const userSchema = new Schema(
       default: null,
     },
     verify: {
-      // це поле визначає чи підтвердила людина e-mail
       type: Boolean,
       default: false,
     },
     verificationToken: {
-      // це поле для запису і порівняння коду підтвердження відправленого на e-mail при реєстрації
       type: String,
       required: [true, "Verify token is required"],
     },
@@ -34,11 +32,9 @@ const userSchema = new Schema(
     },
     avatarURL: {
       type: String,
-      // required: true,
     },
     height: {
       type: Number,
-      // required: true,
       min: 150,
     },
     name: {
@@ -49,36 +45,29 @@ const userSchema = new Schema(
     },
     currentWeight: {
       type: Number,
-      // required: true,
       min: 35,
     },
     desiredWeight: {
       type: Number,
-      // required: true,
       min: 35,
     },
     birthday: {
       type: Date,
-      // required: true,
     },
     blood: {
       type: Number,
-      // required: true,
       enum: [1, 2, 3, 4],
     },
     sex: {
       type: String,
-      // required: true,
       enum: ["male", "female"],
     },
     levelActivity: {
       type: Number,
-      // required: true,
       enum: [1, 2, 3, 4, 5],
     },
     age: {
       type: Number,
-      // required: true,
     },
     resultBMR: {
       type: Number,

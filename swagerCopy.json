@@ -1,0 +1,73 @@
+    "/exercises/filters": {
+      "get": {
+        "tags": ["Exercises"],
+        "summary": "Exercises Filter",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "type": "string",
+            "description": "Exercises Filter",
+            "example": "Muscles"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExercisesFilter_Res"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data by your request not found in DB"
+          }
+        }
+      }
+    },
+
+
+    // 
+
+          "ExercisesFilter_Res": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "_id",
+              "example": "65e627e6e1a05a278a7cf2fb"
+            },
+            "filter": {
+              "type": "string",
+              "description": "filter type",
+              "example": "Muscles"
+            },
+            "name": {
+              "type": "string",
+              "description": "filter name",
+              "example": "calves"
+            },
+            "imgURL": {
+              "type": "string",
+              "description": "filter imgURL",
+              "example": "https://ftp.goit.study/img/power-pulse/filters/calves_vzdk8o.jpg"
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "650f35ece3f5522fc63962b3",
+            "filter": "Muscles",
+            "name": "calves",
+            "imgURL": "https://ftp.goit.study/img/power-pulse/filters/calves_vzdk8o.jpg"
+          }
+        ]
+      },
