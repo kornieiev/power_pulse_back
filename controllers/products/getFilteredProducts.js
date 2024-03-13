@@ -1,30 +1,34 @@
-const { HttpError } = require("../../helpers");
-const { Product, User } = require("../../models");
+const { HttpError } = require('../../helpers')
+const { Product, User } = require('../../models')
 
 const getFilteredProducts = async (req, res) => {
-  const { _id: owner } = req.user;
-  // const { category, title, groupBloodNotAllowed } = req.body
-  const { category, title, groupBloodNotAllowed } = req.query;
+	const { _id: owner } = req.user
+	// const { category, title, groupBloodNotAllowed } = req.body
+	const { category, title, groupBloodNotAllowed } = req.query
 
-  const query = {};
-  category && (query.category = category);
-  title && (query.title = { $regex: title, $options: "i" });
+	// console.log('category', category)
+	// console.log('title', title)
+	// console.log('groupBloodNotAllowed', groupBloodNotAllowed)
 
-  const user = await User.findById(owner);
+	const query = {}
+	category && (query.category = category)
+	title && (query.title = { $regex: title, $options: 'i' })
 
-  if (groupBloodNotAllowed === "recommended") {
-    query[`groupBloodNotAllowed.${user.blood}`] = "true";
-  }
-  if (groupBloodNotAllowed === "not-recommended") {
-    query[`groupBloodNotAllowed.${user.blood}`] = "false";
-  }
-  const data = await Product.find({ query });
+	const user = await User.findById(owner)
 
-  if (data.length < 1) {
-    throw HttpError(404, "Collection not found");
-  }
+	if (groupBloodNotAllowed === 'recommended') {
+		query[`groupBloodNotAllowed.${user.blood}`] = 'true'
+	}
+	if (groupBloodNotAllowed === 'not-recommended') {
+		query[`groupBloodNotAllowed.${user.blood}`] = 'false'
+	}
+	const data = await Product.find(query)
 
-  res.status(200).json(data);
-};
+	if (data.length < 1) {
+		throw HttpError(404, 'Collection not found')
+	}
 
-module.exports = getFilteredProducts;
+	res.status(200).json(data)
+}
+
+module.exports = getFilteredProducts
