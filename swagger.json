@@ -513,6 +513,44 @@
           }
         }
       }
+    },
+
+    "/exercises/filters/{filter}": {
+      "post": {
+        "tags": ["Exercises"],
+        "summary": "Exercises Filter",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "type": "string",
+            "description": "Exercises Filter"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Registration_Res"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
     }
   },
 
