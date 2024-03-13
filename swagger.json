@@ -248,7 +248,8 @@
             "name": "date",
             "required": true,
             "type": "string",
-            "description": "date"
+            "description": "date",
+            "example": "12-03-2024"
           }
         ],
         "security": [{ "Bearer": [] }],
@@ -451,21 +452,24 @@
             "name": "category",
             "required": true,
             "type": "string",
-            "description": "category name"
+            "description": "category name",
+            "example": "flour"
           },
           {
             "in": "query",
             "name": "title",
             "required": true,
             "type": "string",
-            "description": "title name"
+            "description": "title name",
+            "example": "mak"
           },
           {
             "in": "query",
             "name": "groupBloodNotAllowed",
             "required": true,
             "type": "string",
-            "description": "groupBloodNotAllowed name"
+            "description": "groupBloodNotAllowed name",
+            "example": "not-recommended"
           }
         ],
         "security": [{ "Bearer": [] }],
@@ -578,6 +582,25 @@
           },
           "404": {
             "description": "Data by your request not found in DB"
+          }
+        }
+      }
+    },
+
+    "/statistics": {
+      "get": {
+        "tags": ["Statistics"],
+        "summary": "Get User Statistics",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserStatistics_Res"
+                }
+              }
+            }
           }
         }
       }
@@ -1114,12 +1137,12 @@
           "productId": {
             "type": "string",
             "description": "ProductId",
-            "example": "65e62839e1a05a278a7cf308"
+            "example": "5d51694902b2373622ff5a68"
           },
           "date": {
             "type": "string",
             "description": "Product date",
-            "example": "10-09-2000"
+            "example": "12-03-2024"
           },
           "calories": {
             "type": "integer",
@@ -1211,7 +1234,7 @@
           "date": {
             "type": "string",
             "description": "Product date",
-            "example": "10-09-2000"
+            "example": "12-03-2024"
           }
         }
       },
@@ -1364,7 +1387,7 @@
           "date": {
             "type": "string",
             "description": "Exercises date",
-            "example": "10-09-2000"
+            "example": "12-03-2024"
           }
         }
       },
@@ -1572,6 +1595,38 @@
             "time": 3
           }
         ]
+      },
+
+      "GetUserStatistics_Res": {
+        "type": "object",
+        "properties": {
+          "totalUsers": {
+            "type": "integer",
+            "description": "totalUsers",
+            "example": 22
+          },
+          "totalExercises": {
+            "type": "integer",
+            "description": "totalExercises",
+            "example": 7
+          },
+          "totalBurnedCalories": {
+            "type": "integer",
+            "description": "totalBurnedCalories",
+            "example": 2593
+          },
+          "totalTimeTrainings": {
+            "type": "integer",
+            "description": "totalTimeTrainings",
+            "example": 3
+          }
+        },
+        "example": {
+          "totalUsers": 22,
+          "totalExercises": 7,
+          "totalBurnedCalories": 2593,
+          "totalTimeTrainings": 3
+        }
       }
     },
     "securitySchemes": {
