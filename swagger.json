@@ -515,8 +515,8 @@
       }
     },
 
-    "/exercises/filters/{filter}": {
-      "post": {
+    "/exercises/filters": {
+      "get": {
         "tags": ["Exercises"],
         "summary": "Exercises Filter",
         "parameters": [
@@ -525,29 +525,59 @@
             "name": "filter",
             "required": true,
             "type": "string",
-            "description": "Exercises Filter"
+            "description": "Exercises Filter",
+            "example": "Muscles"
           }
         ],
         "security": [{ "Bearer": [] }],
 
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Registration_Res"
+                  "$ref": "#/components/schemas/ExercisesFilter_Res"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad request (invalid request body)",
-            "content": {}
+          "404": {
+            "description": "Data by your request not found in DB"
+          }
+        }
+      }
+    },
+
+    "/exercises/query": {
+      "get": {
+        "tags": ["Exercises"],
+        "summary": "Exercises Filter By Query",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "exercise",
+            "required": true,
+            "type": "string",
+            "description": "Exercises Filter By Query",
+            "example": "waist"
+          }
+        ],
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExercisesFilterByQuery_Res"
+                }
+              }
+            }
           },
-          "409": {
-            "description": "Provided email already exists",
-            "content": {}
+          "404": {
+            "description": "Data by your request not found in DB"
           }
         }
       }
@@ -1442,6 +1472,104 @@
             "calories": 88,
             "category": "fish",
             "title": "Lobster (neck meat)"
+          }
+        ]
+      },
+
+      "ExercisesFilter_Res": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "_id",
+              "example": "65e627e6e1a05a278a7cf2fb"
+            },
+            "filter": {
+              "type": "string",
+              "description": "filter type",
+              "example": "Muscles"
+            },
+            "name": {
+              "type": "string",
+              "description": "filter name",
+              "example": "calves"
+            },
+            "imgURL": {
+              "type": "string",
+              "description": "filter imgURL",
+              "example": "https://ftp.goit.study/img/power-pulse/filters/calves_vzdk8o.jpg"
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "650f35ece3f5522fc63962b3",
+            "filter": "Muscles",
+            "name": "calves",
+            "imgURL": "https://ftp.goit.study/img/power-pulse/filters/calves_vzdk8o.jpg"
+          }
+        ]
+      },
+
+      "ExercisesFilterByQuery_Res": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "_id",
+              "example": "65e627e6e1a05a278a7cf2fb"
+            },
+            "bodyPart": {
+              "type": "string",
+              "description": "bodyPart type",
+              "example": "waist"
+            },
+            "equipment": {
+              "type": "string",
+              "description": "equipment type",
+              "example": "kettlebell"
+            },
+            "gifUrl": {
+              "type": "string",
+              "description": "filter gifUrl",
+              "example": "https://ftp.goit.study/img/power-pulse/gifs/0554.gif"
+            },
+            "name": {
+              "type": "string",
+              "description": "filter name",
+              "example": "calves"
+            },
+            "target": {
+              "type": "string",
+              "description": "target type",
+              "example": "abs"
+            },
+            "burnedCalories": {
+              "type": "integer",
+              "description": "burnedCalories",
+              "example": 242
+            },
+            "time": {
+              "type": "integer",
+              "description": "time",
+              "example": 3
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "64f2458d6f67bc34bae4f9cb",
+            "bodyPart": "waist",
+            "equipment": "kettlebell",
+            "gifUrl": "https://ftp.goit.study/img/power-pulse/gifs/0554.gif",
+            "name": "kettlebell windmill",
+            "target": "abs",
+            "burnedCalories": 242,
+            "time": 3
           }
         ]
       }

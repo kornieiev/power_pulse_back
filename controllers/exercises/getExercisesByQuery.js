@@ -14,6 +14,13 @@ const getExercisesByQuery = async (req, res) => {
     );
   });
 
+  console.log("data.length", data.length);
+
+  if (!data || data.length === 0) {
+    res.status(404).json("Data by your request not found in DB");
+    throw HttpError(404);
+  }
+
   res.status(200).json(data);
 };
 
