@@ -1,17 +1,13 @@
-const HttpError = require('./HttpError')
-const controllerWrapper = require('./controllerWraper')
-const validateBody = require('../middlewares/validateBody')
-const handleMongooseError = require('./handleMongooseError')
-const changeImageSize = require('./changeImageSize')
-const emailContentMaker = require('./emailContentMaker')
-const nodemailerFn = require('./nodemailerFn')
+const HttpError = require("./HttpError");
+const controllerWrapper = require("./controllerWraper");
+const validateBody = require("../middlewares/validateBody");
+const handleMongooseError = require("./handleMongooseError");
+const emailContentMaker = require("./emailContentMaker");
 
 module.exports = {
-	HttpError,
-	controllerWrapper,
-	validateBody,
-	handleMongooseError,
-	changeImageSize,
-	emailContentMaker,
-	nodemailerFn,
-}
+  HttpError,
+  controllerWrapper,
+  validateBody,
+  handleMongooseError,
+  emailContentMaker,
+};

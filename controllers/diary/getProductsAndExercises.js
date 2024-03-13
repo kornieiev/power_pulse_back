@@ -19,7 +19,6 @@ const getProductsAndExercises = async (req, res) => {
   ]);
 
   const data = [...products, ...exercises];
-  console.log("data.length", data.length);
 
   if (data.length < 1) {
     throw HttpError(404, "Information by your request not found");

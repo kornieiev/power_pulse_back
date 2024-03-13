@@ -1,5 +1,5 @@
 const { User } = require("../../models");
-const { HttpError, nodemailerFn } = require("../../helpers");
+const { HttpError } = require("../../helpers");
 const bcrypt = require("bcryptjs");
 const { nanoid } = require("nanoid");
 const sendEmail = require("../../helpers/sendEmail");
@@ -31,7 +31,6 @@ const registerUser = async (req, res, next) => {
     });
   } catch (error) {
     if (error.message.includes("E11000") || error.message.code === 11000) {
-      // 11000 - помилка mongoDB яка говорить про наявність дублікату даних у БД
       throw HttpError(409, "Email in use");
     }
     throw error;

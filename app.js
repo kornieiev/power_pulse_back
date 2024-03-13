@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-mongoose //
+mongoose
   .connect(DB_HOST_NEW)
   .then(() => console.log("Database connection successful".bold.italic.yellow))
   .then(() =>

@@ -2,7 +2,6 @@ const { HttpError } = require("../../helpers");
 const { DiaryProduct } = require("../../models");
 
 const deleteUserProducts = async (req, res) => {
-  console.log("first");
   const { _id: owner } = req.user;
   const { id } = req.params;
   const { date } = req.body;
@@ -17,7 +16,6 @@ const deleteUserProducts = async (req, res) => {
     const ind = product._id.toString() === id;
     return ind;
   });
-  console.log("index", index);
 
   if (index === -1) {
     res.status(404).json("Product not found");

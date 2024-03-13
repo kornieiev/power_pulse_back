@@ -450,7 +450,7 @@
           {
             "in": "query",
             "name": "category",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": "category name",
             "example": "flour"
@@ -458,7 +458,7 @@
           {
             "in": "query",
             "name": "title",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": "title name",
             "example": "mak"
@@ -466,10 +466,12 @@
           {
             "in": "query",
             "name": "groupBloodNotAllowed",
-            "required": true,
-            "type": "string",
-            "description": "groupBloodNotAllowed name",
-            "example": "not-recommended"
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["recommended", "not-recommended"]
+            },
+            "description": "Select Blood Allowed type for search"
           }
         ],
         "security": [{ "Bearer": [] }],
