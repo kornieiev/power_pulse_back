@@ -1,35 +1,36 @@
-const { HttpError } = require("../../helpers");
-const { DiaryExercise } = require("../../models");
+const { HttpError } = require('../../helpers')
+const { DiaryExercise } = require('../../models')
 
 const deleteUserExercises = async (req, res) => {
-  const { _id: owner } = req.user;
-  const { id } = req.params;
-  const { date } = req.query;
+	const { _id: owner } = req.user
+	const { id } = req.params
+	const { date } = req.query
+	console.log('id', id)
 
-  const findExercise = await DiaryExercise.findOne({ owner, date });
+	const findExercise = await DiaryExercise.findOne({ owner, date })
 
-  if (!findExercise) {
-    throw HttpError(404, "Not found");
-  }
+	if (!findExercise) {
+		throw HttpError(404, 'Not found')
+	}
 
-  const index = findExercise.exerciseArr.findIndex((product) => {
-    const ind = product._id.toString() === id.toString();
-    return ind;
-  });
+	const index = findExercise.exerciseArr.findIndex(product => {
+		const ind = product._id.toString() === id
+		return ind
+	})
 
-  const result = await DiaryExercise.findByIdAndUpdate(
-    findExercise._id,
-    {
-      $inc: {
-        burnedCalories: -findExercise.exerciseArr[index].calories,
-        totalExerciseTime: -findExercise.exerciseArr[index].time,
-      },
-      $pull: { exerciseArr: { _id: id } },
-    },
-    { new: true }
-  );
+	const result = await DiaryExercise.findByIdAndUpdate(
+		findExercise._id,
+		{
+			$inc: {
+				burnedCalories: -findExercise.exerciseArr[index].calories,
+				totalExerciseTime: -findExercise.exerciseArr[index].time,
+			},
+			$pull: { exerciseArr: { _id: id } },
+		},
+		{ new: true }
+	)
 
-  res.json(result);
-};
+	res.status(200).json(result)
+}
 
-module.exports = deleteUserExercises;
+module.exports = deleteUserExercises
