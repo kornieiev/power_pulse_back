@@ -21,7 +21,7 @@ const {
 
 const { validateBody } = require("../helpers");
 const addMetrics = require("../controllers/auth/addMetrics");
-const updateMetrics = require("../controllers/auth/updateMetrics");
+// const updateMetrics = require("../controllers/auth/updateMetrics");
 
 const usersRouter = express.Router();
 

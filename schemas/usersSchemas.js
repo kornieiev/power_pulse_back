@@ -32,21 +32,21 @@ const addMetricsSchema = Joi.object({
   email: Joi.string().email(),
 });
 
-const updateMetricsSchema = Joi.object({
-  height: Joi.number().min(150),
-  currentWeight: Joi.number().min(35),
-  desiredWeight: Joi.number().min(35),
-  birthday: Joi.date().max(
-    new Date(new Date().setFullYear(new Date().getFullYear() - 18))
-  ),
-  blood: Joi.number().valid(1, 2, 3, 4),
-  sex: Joi.string().valid("male", "female"),
-  levelActivity: Joi.number().valid(1, 2, 3, 4, 5),
-  age: Joi.number().min(18),
-  userName: Joi.string(),
-  resultBMR: Joi.number(),
-  avatar: Joi.string(),
-});
+// const updateMetricsSchema = Joi.object({
+//   height: Joi.number().min(150),
+//   currentWeight: Joi.number().min(35),
+//   desiredWeight: Joi.number().min(35),
+//   birthday: Joi.date().max(
+//     new Date(new Date().setFullYear(new Date().getFullYear() - 18))
+//   ),
+//   blood: Joi.number().valid(1, 2, 3, 4),
+//   sex: Joi.string().valid("male", "female"),
+//   levelActivity: Joi.number().valid(1, 2, 3, 4, 5),
+//   age: Joi.number().min(18),
+//   userName: Joi.string(),
+//   resultBMR: Joi.number(),
+//   avatar: Joi.string(),
+// });
 
 module.exports = {
   registerUserSchema,
@@ -54,7 +54,7 @@ module.exports = {
   // currentUserSchema,
   reVerificationSchema,
   addMetricsSchema,
-  updateMetricsSchema,
+  // updateMetricsSchema,
 };
 
 // height - number; minimum 150(cm); required
