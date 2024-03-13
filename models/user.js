@@ -61,7 +61,6 @@ const userSchema = new Schema(
       type: Date,
       // required: true,
     },
-
     blood: {
       type: Number,
       // required: true,
@@ -84,7 +83,6 @@ const userSchema = new Schema(
     resultBMR: {
       type: Number,
     },
-    test: { type: String },
   },
   {
     versionKey: false,
