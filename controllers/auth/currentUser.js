@@ -1,10 +1,4 @@
-const { User } = require("../../models");
-
 const currentUser = async (req, res, next) => {
-  const { _id: owner } = req.user;
-
-  const userInfo = await User.findById(owner);
-
   const {
     _id,
     email,
@@ -21,7 +15,7 @@ const currentUser = async (req, res, next) => {
     birthday,
     age,
     createdAt,
-  } = userInfo;
+  } = req.user;
 
   const userData = {
     _id,

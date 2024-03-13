@@ -30,22 +30,3 @@ const nodemailerFn = (verificationCode, email) => {
 };
 
 module.exports = nodemailerFn;
-
-//
-
-// const verifyEmail = {
-//   to: email,
-//   subject: "Verify your email",
-//   html: (
-//     <a target='_blank' href='${BASE_URL}/users/verify/${verificationToken}'>
-//       Click verify email
-//     </a>
-//   ),
-// };
-
-// await sendEmail(verifyEmail);
-
-// res.status(201).json({
-//   email: newUser.email,
-//   subscription: newUser.subscription,
-// });

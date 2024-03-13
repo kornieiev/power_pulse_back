@@ -2,7 +2,6 @@ const { HttpError } = require("../../helpers");
 const { Product, User } = require("../../models");
 
 const getFilteredProducts = async (req, res) => {
-  console.log("test");
   const { _id: owner } = req.user;
   // const { category, title, groupBloodNotAllowed } = req.body
   const { category, title, groupBloodNotAllowed } = req.query;

@@ -17,15 +17,10 @@ const addMetrics = async (req, res, next) => {
   } = req.body;
 
   const resultBMR = BMR(height, currentWeight, levelActivity, age, sex);
-  console.log("resultBMR", resultBMR);
-
-  // const userData = await User.findById(owner);
-  // console.log("userData", userData);
 
   const updatedUser = await User.findOneAndUpdate(
     { email },
     {
-      // ...userData,
       $set: {
         height,
         currentWeight,

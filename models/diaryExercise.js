@@ -23,7 +23,6 @@ const diaryExerciseSchema = new Schema(
     },
     exerciseArr: [
       {
-        // _id: false,
         exerciseId: {
           type: Schema.Types.ObjectId,
           ref: "exercise",
