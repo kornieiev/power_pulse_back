@@ -1,17 +1,24 @@
-const express = require('express')
+const express = require("express");
 
 const {
-	getExercisesFilters,
-	getExercises,
-} = require('../controllers/exercises')
-const { authenticate } = require('../middlewares')
+  getExercisesFilters,
+  getExercises,
+  getExercisesByQuery,
+} = require("../controllers/exercises");
+const { authenticate } = require("../middlewares");
 
-const exerciseRouters = express.Router()
+const exerciseRouters = express.Router();
 
 // get  filters exercises
-exerciseRouters.get('/filters', authenticate, getExercisesFilters)
+exerciseRouters.get("/filters", authenticate, getExercisesFilters);
 
 // get  exercises
-exerciseRouters.get('/', authenticate, getExercises)
+exerciseRouters.get("/", authenticate, getExercises);
 
-module.exports = exerciseRouters
+// getExercisesByQuery
+exerciseRouters.get("/query", authenticate, getExercisesByQuery);
+
+module.exports = exerciseRouters;
+
+// // category (bodyPart, muscles, equipment)
+// // target ()
