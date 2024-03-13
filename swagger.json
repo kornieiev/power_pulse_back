@@ -311,20 +311,17 @@
             "required": true,
             "type": "string",
             "description": "productArr._id"
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": true,
+            "type": "string",
+            "description": "date",
+            "example": "12-03-2024"
           }
         ],
         "security": [{ "Bearer": [] }],
-        "requestBody": {
-          "description": "Delete product",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteProductFromDiary_Req"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Product Deleted",
@@ -389,20 +386,17 @@
             "required": true,
             "type": "string",
             "description": "exercises id"
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": true,
+            "type": "string",
+            "description": "date",
+            "example": "12-03-2024"
           }
         ],
         "security": [{ "Bearer": [] }],
-        "requestBody": {
-          "description": "Delete Exercise",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteExercisesFromDiary_Req"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Deleted",
@@ -489,67 +483,6 @@
           "404": {
             "description": "Collection not found",
             "content": {}
-          }
-        }
-      }
-    },
-
-    "/diary/common/{date}": {
-      "get": {
-        "tags": ["Diary"],
-        "summary": "Get Common Data By Date",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "date",
-            "required": true,
-            "type": "string",
-            "description": "get common data by date",
-            "example": "12-03-2024"
-          }
-        ],
-        "security": [{ "Bearer": [] }],
-        "responses": {
-          "200": {
-            "description": "Successful operation"
-          },
-          "404": {
-            "description": "Information by your request not found",
-            "content": {}
-          }
-        }
-      }
-    },
-
-    "/exercises/filters": {
-      "get": {
-        "tags": ["Exercises"],
-        "summary": "Exercises Filter",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "filter",
-            "required": true,
-            "type": "string",
-            "description": "Exercises Filter",
-            "example": "Muscles"
-          }
-        ],
-        "security": [{ "Bearer": [] }],
-
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ExercisesFilter_Res"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Data by your request not found in DB"
           }
         }
       }
@@ -1229,17 +1162,6 @@
         }
       },
 
-      "DeleteProductFromDiary_Req": {
-        "type": "object",
-        "required": ["date"],
-        "properties": {
-          "date": {
-            "type": "string",
-            "description": "Product date",
-            "example": "12-03-2024"
-          }
-        }
-      },
       "DeleteProductFromDiary_Res": {
         "type": "object",
         "items": {
@@ -1292,12 +1214,12 @@
           "exerciseId": {
             "type": "string",
             "description": "exerciseId",
-            "example": "65e627e6e1a05a278a7cf2fb"
+            "example": "64f2458d6f67bc34bae4f86d"
           },
           "date": {
             "type": "string",
             "description": "Exercises date",
-            "example": "10-09-2000"
+            "example": "12-03-2024"
           },
           "calories": {
             "type": "integer",
@@ -1382,17 +1304,6 @@
         }
       },
 
-      "DeleteExercisesFromDiary_Req": {
-        "type": "object",
-        "required": ["date"],
-        "properties": {
-          "date": {
-            "type": "string",
-            "description": "Exercises date",
-            "example": "12-03-2024"
-          }
-        }
-      },
       "DeleteExercisesFromDiary_Res": {
         "type": "object",
         "items": {
@@ -1497,43 +1408,6 @@
             "calories": 88,
             "category": "fish",
             "title": "Lobster (neck meat)"
-          }
-        ]
-      },
-
-      "ExercisesFilter_Res": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "_id": {
-              "type": "string",
-              "description": "_id",
-              "example": "65e627e6e1a05a278a7cf2fb"
-            },
-            "filter": {
-              "type": "string",
-              "description": "filter type",
-              "example": "Muscles"
-            },
-            "name": {
-              "type": "string",
-              "description": "filter name",
-              "example": "calves"
-            },
-            "imgURL": {
-              "type": "string",
-              "description": "filter imgURL",
-              "example": "https://ftp.goit.study/img/power-pulse/filters/calves_vzdk8o.jpg"
-            }
-          }
-        },
-        "example": [
-          {
-            "_id": "650f35ece3f5522fc63962b3",
-            "filter": "Muscles",
-            "name": "calves",
-            "imgURL": "https://ftp.goit.study/img/power-pulse/filters/calves_vzdk8o.jpg"
           }
         ]
       },

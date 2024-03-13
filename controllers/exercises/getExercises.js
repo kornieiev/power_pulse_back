@@ -3,8 +3,7 @@ const { Exercise } = require("../../models");
 
 const getExercises = async (req, res) => {
   const { bodyPart, equipment, target, page = 1, limit = 10 } = req.query;
-  // category (bodyPart, muscules, equipment)
-  // target ()
+
   const skip = (page - 1) * limit;
 
   const query = {};
