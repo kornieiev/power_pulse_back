@@ -41,7 +41,7 @@ diaryRouter.get("/common/:date", authenticate, getCommonDataByDate);
 
 // delete products
 diaryRouter.delete(
-  "/products/:id",
+  "/products/:id:date",
   authenticate,
   isValidId,
   deleteUserProducts

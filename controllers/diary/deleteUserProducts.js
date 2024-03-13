@@ -2,9 +2,10 @@ const { HttpError } = require("../../helpers");
 const { DiaryProduct } = require("../../models");
 
 const deleteUserProducts = async (req, res) => {
+  console.log("first");
   const { _id: owner } = req.user;
   const { id } = req.params;
-  const { date } = req.query;
+  const { date } = req.body;
 
   const findProduct = await DiaryProduct.findOne({ owner, date });
 
