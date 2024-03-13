@@ -238,14 +238,22 @@
       }
     },
 
-    "/diary/": {
+    "/diary": {
       "get": {
         "tags": ["Diary"],
         "summary": "Get all data from diary",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date",
+            "required": true,
+            "type": "string",
+            "description": "date"
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "responses": {
-          "201": {
+          "200": {
             "description": "Created",
             "content": {
               "application/json": {
@@ -938,8 +946,8 @@
               },
               "date": {
                 "type": "string",
-                "description": "Product date",
-                "example": "10-09-2000"
+                "description": "date",
+                "example": "12-03-2024"
               },
               "consumedCalories": {
                 "type": "integer",
@@ -960,6 +968,26 @@
                       "type": "string",
                       "description": "productId",
                       "example": "65e62839e1a05a278a7cf308"
+                    },
+                    "groupBloodNotAllowed": {
+                      "type": "string",
+                      "description": "groupBlood",
+                      "example": "1"
+                    },
+                    "_id": {
+                      "type": "string",
+                      "description": "_id",
+                      "example": "5d51694902b2373622ff57c5"
+                    },
+                    "category": {
+                      "type": "string",
+                      "description": "category",
+                      "example": "dairy"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "title",
+                      "example": "Cheese"
                     }
                   },
                   "calories": {
@@ -971,6 +999,11 @@
                     "type": "integer",
                     "description": "amount",
                     "example": 300
+                  },
+                  "_id": {
+                    "type": "string",
+                    "description": "_id",
+                    "example": "65ef8b48ccbc7e9f03542c81"
                   }
                 }
               }
@@ -979,16 +1012,27 @@
         },
         "example": [
           {
-            "_id": "65edd7a4d0fb93a4da005a4b",
+            "_id": "65ef8b35ccbc7e9f03542c71",
             "owner": "65edccea842bab87f8976ddb",
-            "date": "10-03-2024",
-            "consumedCalories": 200,
-            "totalProductWeight": 350,
+            "date": "12-03-2024",
+            "consumedCalories": 12426,
+            "totalProductWeight": 9769,
             "productArr": [
               {
-                "productId": "5d51694902b2373622ff5773",
-                "calories": 200,
-                "amount": 350
+                "productId": {
+                  "groupBloodNotAllowed": {
+                    "1": true,
+                    "2": true,
+                    "3": false,
+                    "4": false
+                  },
+                  "_id": "5d51694902b2373622ff57c5",
+                  "category": "dairy",
+                  "title": "Cheese Russian Mozzarella Kezsky cheese factory"
+                },
+                "calories": 286,
+                "amount": 100,
+                "_id": "65ef8b48ccbc7e9f03542c81"
               }
             ]
           }

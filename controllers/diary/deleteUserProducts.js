@@ -4,7 +4,7 @@ const { DiaryProduct } = require("../../models");
 const deleteUserProducts = async (req, res) => {
   const { _id: owner } = req.user;
   const { id } = req.params;
-  const { date } = req.body;
+  const { date } = req.query;
 
   const findProduct = await DiaryProduct.findOne({ owner, date });
 
