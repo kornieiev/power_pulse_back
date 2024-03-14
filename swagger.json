@@ -294,7 +294,7 @@
     "/diary/products/{id}": {
       "delete": {
         "tags": ["Diary"],
-        "summary": "Delete product from diary",
+        "summary": "Delete product from diary by date and ID",
         "parameters": [
           {
             "in": "path",
@@ -307,9 +307,12 @@
             "in": "query",
             "name": "date",
             "required": true,
-            "type": "string",
-            "description": "date",
-            "example": "12-03-2024"
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "12-03-2024"
+            },
+            "description": "Date in format DD-MM-YYYY"
           }
         ],
         "security": [{ "Bearer": [] }],
@@ -325,7 +328,7 @@
             }
           },
           "404": {
-            "description": "Not found"
+            "description": "Data not found"
           },
           "400": {
             "description": "_____ is not valid id"
@@ -1130,7 +1133,7 @@
             "date": {
               "type": "string",
               "description": "Product date",
-              "example": "10-09-2000"
+              "example": "12-03-2024"
             },
             "consumedCalories": {
               "type": "integer",
@@ -1174,7 +1177,7 @@
         },
         "example": {
           "owner": "65edccea842bab87f8976ddb",
-          "date": "10-09-2000",
+          "date": "12-03-2024",
           "consumedCalories": 150,
           "totalProductWeight": 300,
           "productArr": [
@@ -1196,7 +1199,7 @@
             "_id": {
               "type": "string",
               "description": "_id",
-              "example": "65e627e6e1a05a278a7cf2fb"
+              "example": "5d51694902b2373622ff5b72"
             },
             "owner": {
               "type": "string",
@@ -1206,7 +1209,7 @@
             "date": {
               "type": "string",
               "description": "Product date",
-              "example": "10-09-2000"
+              "example": "12-03-2024"
             },
             "burnedCalories": {
               "type": "integer",
@@ -1277,7 +1280,7 @@
             "date": {
               "type": "string",
               "description": "Product date",
-              "example": "10-09-2000"
+              "example": "12-03-2024"
             },
             "consumedCalories": {
               "type": "integer",
@@ -1297,7 +1300,7 @@
                   "exerciseId": {
                     "type": "string",
                     "description": "exerciseId",
-                    "example": "65e627e6e1a05a278a7cf2fb"
+                    "example": ""
                   }
                 },
                 "calories": {
@@ -1316,12 +1319,12 @@
         },
         "example": {
           "owner": "65edccea842bab87f8976ddb",
-          "date": "10-09-2000",
+          "date": "12-03-2024",
           "burnedCalories": 350,
           "totalExerciseTime": 15,
           "exerciseArr": [
             {
-              "exerciseId": "65e627e6e1a05a278a7cf2fb",
+              "exerciseId": "64f2458d6f67bc34bae4f7f7",
               "calories": 350,
               "time": 15
             }
@@ -1338,7 +1341,7 @@
             "_id": {
               "type": "string",
               "description": "_id",
-              "example": "65e627e6e1a05a278a7cf2fb"
+              "example": "64f2458d6f67bc34bae4f7f7"
             },
             "owner": {
               "type": "string",
@@ -1348,7 +1351,7 @@
             "date": {
               "type": "string",
               "description": "Product date",
-              "example": "10-09-2000"
+              "example": "12-03-2024"
             },
             "burnedCalories": {
               "type": "integer",
@@ -1446,7 +1449,7 @@
             "_id": {
               "type": "string",
               "description": "_id",
-              "example": "65e627e6e1a05a278a7cf2fb"
+              "example": "64f2458d6f67bc34bae4f7f7"
             },
             "filter": {
               "type": "string",
