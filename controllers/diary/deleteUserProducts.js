@@ -34,8 +34,21 @@ const deleteUserProducts = async (req, res) => {
     },
     { new: true }
   );
+  // console.log("result", result);
 
-  res.status(200).json(result);
+  const changedResult = [
+    {
+      _id: result._id,
+      owner: result.owner,
+      date: result.date,
+      consumedCalories: result.consumedCalories,
+      totalProductWeight: result.totalProductWeight,
+      productArr: result.productArr,
+    },
+  ];
+  console.log("changedResult", changedResult);
+
+  res.status(200).json(changedResult);
 };
 
 module.exports = deleteUserProducts;
