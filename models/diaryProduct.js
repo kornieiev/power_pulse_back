@@ -38,6 +38,14 @@ const diaryProductSchema = new Schema(
           minimum: 1,
           require: true,
         },
+        title: {
+          type: String,
+          required: [true, "Define product title"],
+        },
+        category: {
+          type: String,
+          required: [true, "Define product category"],
+        },
       },
     ],
   },

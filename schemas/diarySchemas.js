@@ -10,6 +10,8 @@ const UserProductSchema = Joi.object({
   date: Joi.string().pattern(dateRegexp).required().messages(dateFormat),
   amount: Joi.number().min(1).required(),
   calories: Joi.number().min(1).required(),
+  title: Joi.string().required(),
+  category: Joi.string().required(),
 });
 
 const UserExercisesSchema = Joi.object({
