@@ -1096,12 +1096,19 @@
 
       "AddProductToDiary_Req": {
         "type": "object",
-        "required": ["productId", "date", "calories", "amount"],
+        "required": [
+          "productId",
+          "date",
+          "calories",
+          "amount",
+          "title",
+          "category"
+        ],
         "properties": {
           "productId": {
             "type": "string",
             "description": "ProductId",
-            "example": "5d51694902b2373622ff5a68"
+            "example": "5d51694902b2373622ff5b72"
           },
           "date": {
             "type": "string",
@@ -1117,77 +1124,40 @@
             "type": "integer",
             "description": "Product amount",
             "example": 300
+          },
+          "title": {
+            "type": "string",
+            "description": "Product title",
+            "example": "Lobster"
+          },
+          "category": {
+            "type": "string",
+            "description": "Product category",
+            "example": "fish"
           }
         }
       },
       "AddProductToDiary_Res": {
         "type": "object",
         "items": {
-          "type": "object",
-          "properties": {
-            "owner": {
-              "type": "string",
-              "description": "Owner Id",
-              "example": "65ed9dd60bd872e7d548338d"
-            },
-            "date": {
-              "type": "string",
-              "description": "Product date",
-              "example": "12-03-2024"
-            },
-            "consumedCalories": {
-              "type": "integer",
-              "description": "consumedCalories",
-              "example": 150
-            },
-            "totalProductWeight": {
-              "type": "integer",
-              "description": "totalProductWeight",
-              "example": 300
-            },
-            "productArr": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "productId": {
-                    "type": "string",
-                    "description": "productId",
-                    "example": "65e62839e1a05a278a7cf308"
-                  }
-                },
-                "calories": {
-                  "type": "integer",
-                  "description": "calories",
-                  "example": 150
-                },
-                "amount": {
-                  "type": "integer",
-                  "description": "amount",
-                  "example": 300
-                }
-              }
-            },
-            "_id": {
-              "type": "string",
-              "description": "_id",
-              "example": "65ef0477f3c29daf00860f4f"
-            }
-          }
+          "type": "object"
         },
         "example": {
-          "owner": "65edccea842bab87f8976ddb",
+          "_id": "65f2ba8c486f3ad137874302",
+          "owner": "65f2ba07bbc05b1c3e89cbc4",
           "date": "12-03-2024",
-          "consumedCalories": 150,
-          "totalProductWeight": 300,
+          "consumedCalories": 6,
+          "totalProductWeight": 6,
           "productArr": [
             {
-              "productId": "65e62839e1a05a278a7cf308",
-              "calories": 150,
-              "amount": 300
+              "productId": "5d51694902b2373622ff5b72",
+              "calories": 6,
+              "amount": 6,
+              "title": "Lobster",
+              "category": "fish",
+              "_id": "65f44a307dc6207d4c895167"
             }
-          ],
-          "_id": "65ef0477f3c29daf00860f4f"
+          ]
         }
       },
 
@@ -1238,12 +1208,21 @@
 
       "AddExercisesToDiary_Req": {
         "type": "object",
-        "required": ["exerciseId", "date", "calories", "time"],
+        "required": [
+          "exerciseId",
+          "date",
+          "calories",
+          "time",
+          "bodyPart",
+          "equipment",
+          "name",
+          "target"
+        ],
         "properties": {
           "exerciseId": {
             "type": "string",
             "description": "exerciseId",
-            "example": "64f2458d6f67bc34bae4f86d"
+            "example": "64f2458d6f67bc34bae4f825"
           },
           "date": {
             "type": "string",
@@ -1259,78 +1238,53 @@
             "type": "integer",
             "description": "Exercises time",
             "example": 15
+          },
+          "bodyPart": {
+            "type": "string",
+            "description": "Exercises bodyPart",
+            "example": "upper arms"
+          },
+          "equipment": {
+            "type": "string",
+            "description": "Exercises equipment",
+            "example": "barbell"
+          },
+          "name": {
+            "type": "string",
+            "description": "Exercises name",
+            "example": "barbell lying close-grip triceps extension"
+          },
+          "target": {
+            "type": "string",
+            "description": "Exercises target",
+            "example": "triceps"
           }
         }
       },
       "AddExercisesToDiary_Res": {
         "type": "object",
-        "items": {
-          "type": "object",
-          "properties": {
-            "_id": {
-              "type": "string",
-              "description": "_id",
-              "example": "65ef0477f3c29daf00860f4f"
-            },
-            "owner": {
-              "type": "string",
-              "description": "Owner Id",
-              "example": "65ed9dd60bd872e7d548338d"
-            },
-            "date": {
-              "type": "string",
-              "description": "Product date",
-              "example": "12-03-2024"
-            },
-            "consumedCalories": {
-              "type": "integer",
-              "description": "consumedCalories",
-              "example": 150
-            },
-            "totalProductWeight": {
-              "type": "integer",
-              "description": "totalProductWeight",
-              "example": 300
-            },
-            "productArr": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "exerciseId": {
-                    "type": "string",
-                    "description": "exerciseId",
-                    "example": ""
-                  }
-                },
-                "calories": {
-                  "type": "integer",
-                  "description": "calories",
-                  "example": 350
-                },
-                "time": {
-                  "type": "integer",
-                  "description": "time",
-                  "example": 15
-                }
+
+        "example": [
+          {
+            "_id": "65f2c370bbc05b1c3e89d21a",
+            "owner": "65f2ba07bbc05b1c3e89cbc4",
+            "date": "12-03-2024",
+            "burnedCalories": 10,
+            "totalExerciseTime": 10,
+            "exerciseArr": [
+              {
+                "exerciseId": "64f2458d6f67bc34bae4f825",
+                "calories": 1,
+                "time": 1,
+                "bodyPart": "upper arms",
+                "equipment": "barbell",
+                "name": "barbell lying close-grip triceps extension",
+                "target": "triceps",
+                "_id": "65f458259c9e20fceafa4ff4"
               }
-            }
+            ]
           }
-        },
-        "example": {
-          "owner": "65edccea842bab87f8976ddb",
-          "date": "12-03-2024",
-          "burnedCalories": 350,
-          "totalExerciseTime": 15,
-          "exerciseArr": [
-            {
-              "exerciseId": "64f2458d6f67bc34bae4f7f7",
-              "calories": 350,
-              "time": 15
-            }
-          ],
-          "_id": "65ef0f255a84e6a9207f48c0"
-        }
+        ]
       },
 
       "DeleteExercisesFromDiary_Res": {
