@@ -21,6 +21,10 @@ const UserExercisesSchema = Joi.object({
 
   time: Joi.number().min(1).required(),
   calories: Joi.number().min(1).required(),
+  bodyPart: Joi.string().required(),
+  equipment: Joi.string().required(),
+  name: Joi.string().required(),
+  target: Joi.string().required(),
 });
 
 module.exports = {
