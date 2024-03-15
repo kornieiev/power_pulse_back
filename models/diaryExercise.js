@@ -21,6 +21,7 @@ const diaryExerciseSchema = new Schema(
       type: Number,
       default: 0,
     },
+
     exerciseArr: [
       {
         exerciseId: {
@@ -36,6 +37,22 @@ const diaryExerciseSchema = new Schema(
         time: {
           type: Number,
           minimum: 1,
+          require: true,
+        },
+        bodyPart: {
+          type: String,
+          require: true,
+        },
+        equipment: {
+          type: String,
+          require: true,
+        },
+        name: {
+          type: String,
+          require: true,
+        },
+        target: {
+          type: String,
           require: true,
         },
       },

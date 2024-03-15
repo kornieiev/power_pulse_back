@@ -29,7 +29,7 @@ const deleteUserExercises = async (req, res) => {
     { new: true }
   );
 
-  res.status(200).json(result);
+  res.status(200).json([result]);
 };
 
 module.exports = deleteUserExercises;

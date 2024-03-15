@@ -36,19 +36,19 @@ const deleteUserProducts = async (req, res) => {
   );
   // console.log("result", result);
 
-  const changedResult = [
-    {
-      _id: result._id,
-      owner: result.owner,
-      date: result.date,
-      consumedCalories: result.consumedCalories,
-      totalProductWeight: result.totalProductWeight,
-      productArr: result.productArr,
-    },
-  ];
-  console.log("changedResult", changedResult);
+  // const changedResult = [
+  //   {
+  //     _id: result._id,
+  //     owner: result.owner,
+  //     date: result.date,
+  //     consumedCalories: result.consumedCalories,
+  //     totalProductWeight: result.totalProductWeight,
+  //     productArr: result.productArr,
+  //   },
+  // ];
+  // console.log("changedResult", changedResult);
 
-  res.status(200).json(changedResult);
+  res.status(200).json([result]);
 };
 
 module.exports = deleteUserProducts;
