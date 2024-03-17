@@ -1,69 +1,65 @@
-const { Schema, model } = require("mongoose");
-const { handleMongooseError } = require("../helpers");
+const { Schema, model } = require('mongoose')
+const { handleMongooseError } = require('../helpers')
 
 const diaryExerciseSchema = new Schema(
-  {
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "exercise",
-      required: true,
-    },
-    date: {
-      type: String,
-      match: /^\d{2}-\d{2}-\d{4}$/,
-      require: true || date,
-    },
-    burnedCalories: {
-      type: Number,
-      default: 0,
-    },
-    totalExerciseTime: {
-      type: Number,
-      default: 0,
-    },
+	{
+		owner: {
+			type: Schema.Types.ObjectId,
+			ref: 'exercise',
+			required: true,
+		},
+		date: {
+			type: String,
+			match: /^\d{2}-\d{2}-\d{4}$/,
+			required: true || date,
+		},
+		burnedCalories: {
+			type: Number,
+			default: 0,
+		},
+		totalExerciseTime: {
+			type: Number,
+			default: 0,
+		},
 
-    exerciseArr: [
-      {
-        exerciseId: {
-          type: Schema.Types.ObjectId,
-          ref: "exercise",
-          required: true,
-        },
-        calories: {
-          type: Number,
-          minimum: 1,
-          require: true,
-        },
-        time: {
-          type: Number,
-          minimum: 1,
-          require: true,
-        },
-        bodyPart: {
-          type: String,
-          require: true,
-        },
-        equipment: {
-          type: String,
-          require: true,
-        },
-        name: {
-          type: String,
-          require: true,
-        },
-        target: {
-          type: String,
-          require: true,
-        },
-      },
-    ],
-  },
+		exerciseArr: [
+			{
+				exerciseId: {
+					type: Schema.Types.ObjectId,
+					ref: 'exercise',
+					required: true,
+				},
+				calories: {
+					type: Number,
+					minimum: 1,
+					required: true,
+				},
+				time: {
+					type: Number,
+					minimum: 1,
+					required: true,
+				},
+				bodyPart: {
+					type: String,
+				},
+				equipment: {
+					type: String,
+				},
+				name: {
+					type: String,
+				},
+				target: {
+					type: String,
+				},
+			},
+		],
+	},
 
-  { versionKey: false }
-);
+	{ versionKey: false }
+)
 
-diaryExerciseSchema.post("save", handleMongooseError);
+diaryExerciseSchema.post('save', handleMongooseError)
 
-const DiaryExercise = model("diaryExercise", diaryExerciseSchema);
+const DiaryExercise = model('diaryExercise', diaryExerciseSchema)
 
-module.exports = DiaryExercise;
+module.exports = DiaryExercise
