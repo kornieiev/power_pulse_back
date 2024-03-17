@@ -8,14 +8,16 @@ const getProductsAndExercises = async (req, res) => {
 	const { date } = req.query
 
 	const [products, exercises] = await Promise.all([
-		DiaryProduct.find({ owner, date }).populate(
-			'productArr.productId',
-			'title category groupBloodNotAllowed'
-		),
-		DiaryExercise.find({ owner, date }).populate(
-			'exerciseArr.exerciseId',
-			'bodyPart equipment name target'
-		),
+		DiaryProduct.find({ owner, date }),
+		// .populate(
+		// 	'productArr.productId',
+		// 	'title category groupBloodNotAllowed'
+		// )
+		DiaryExercise.find({ owner, date }),
+		// .populate(
+		// 	'exerciseArr.exerciseId',
+		// 	'bodyPart equipment name target'
+		// ),
 	])
 
 	const data = [...products, ...exercises]
