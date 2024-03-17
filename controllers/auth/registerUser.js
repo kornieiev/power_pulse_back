@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
 const registerUser = async (req, res, next) => {
-  const { email, password, name } = req.body;
+  const { email, password, userName } = req.body;
 
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
@@ -16,7 +16,7 @@ const registerUser = async (req, res, next) => {
 
   try {
     result = await User.create({
-      name,
+      userName,
       email,
       password: hashedPassword,
       userMetrics: false,
@@ -43,11 +43,11 @@ const registerUser = async (req, res, next) => {
     { new: true }
   );
 
-  sendEmail(email, name);
+  sendEmail(email, userName);
 
   res.status(201).json({
     id: result._id,
-    name,
+    userName,
     email,
     token,
     message: "Registration successful",
