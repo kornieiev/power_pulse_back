@@ -6,12 +6,12 @@ const { SENDGRID_API_KEY } = process.env;
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
-function sendEmail(email, name) {
+function sendEmail(email, userName) {
   const msg = {
     to: email,
     from: "ssapientiaa@outlook.com",
     subject: "Verify your email",
-    html: emailContentMaker(email, name),
+    html: emailContentMaker(email, userName),
   };
 
   sgMail

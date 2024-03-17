@@ -11,10 +11,20 @@ const addMetrics = async (req, res, next) => {
     blood,
     sex,
     levelActivity,
-    age,
     userName,
     birthday,
   } = req.body;
+
+  //
+  const mathFullYear = (birthday) => {
+    const [day, month, year] = birthday.split(".");
+    const birthDate = new Date(year, month - 1, day);
+    const currentDate = new Date();
+    const age = currentDate.getFullYear() - birthDate.getFullYear();
+    return age;
+  };
+
+  const age = mathFullYear(birthday);
 
   const resultBMR = BMR(height, currentWeight, levelActivity, age, sex);
 

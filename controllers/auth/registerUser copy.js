@@ -9,11 +9,7 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = process.env;
 
 const registerUser = async (req, res, next) => {
-  console.log("registerUser");
-  const { email, password, name } = req.body;
-  console.log("email", email);
-  console.log("password", password);
-  console.log("name", name);
+  const { email, password, userName } = req.body;
 
   // const verificationCode = nanoid();
 
@@ -24,7 +20,7 @@ const registerUser = async (req, res, next) => {
 
   try {
     result = await User.create({
-      name,
+      userName,
       email,
       // token,
       password: hashedPassword,
@@ -69,7 +65,7 @@ const registerUser = async (req, res, next) => {
 
   res.status(201).json({
     id: result._id,
-    name,
+    userName,
     email,
     token,
     message: "Registration successful",
