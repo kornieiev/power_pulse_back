@@ -9,7 +9,7 @@ const emailMessages = {
 };
 
 const registerUserSchema = Joi.object({
-  name: Joi.string().required(),
+  userName: Joi.string().required(),
   email: Joi.string()
     .pattern(emailRegexp)
     .required()
