@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 const BMR = require("../../helpers/BMR");
 const { User } = require("../../models");
 
@@ -24,6 +26,8 @@ const addMetrics = async (req, res, next) => {
     return age;
   };
 
+  const birthDate = moment(birthday, "DD.MM.YYYY").toDate();
+
   const age = mathFullYear(birthday);
 
   const resultBMR = BMR(height, currentWeight, levelActivity, age, sex);
@@ -38,9 +42,9 @@ const addMetrics = async (req, res, next) => {
         blood,
         sex,
         levelActivity,
-        age,
+        birthday: birthDate,
         userName,
-        birthday,
+        age,
         resultBMR,
         userMetrics: true,
       },

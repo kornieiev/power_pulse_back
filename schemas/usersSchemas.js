@@ -39,9 +39,10 @@ const addMetricsSchema = Joi.object({
   height: Joi.number().min(150),
   currentWeight: Joi.number().min(35),
   desiredWeight: Joi.number().min(35),
-  birthday: Joi.date().max(
-    new Date(new Date().setFullYear(new Date().getFullYear() - 18))
-  ),
+  birthday: Joi.string()
+    .regex(/^\d{2}\.\d{2}\.\d{4}$/)
+    .message("Date should be in format DD.MM.YYYY")
+    .required(),
   blood: Joi.number().valid(1, 2, 3, 4),
   sex: Joi.string().valid("male", "female"),
   levelActivity: Joi.number().valid(1, 2, 3, 4, 5),
