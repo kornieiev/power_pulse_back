@@ -1,0 +1,78 @@
+[
+  {
+    "name": "alcoholic drinks",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/alcohol.png"
+  },
+  {
+    "name": "berries",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/berries.png"
+  },
+  {
+    "name": "cereals",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859043/product_cat_img/cereals.png"
+  },
+  {
+    "name": "dairy",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/dairy.png"
+  },
+  {
+    "name": "dried fruits",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/dried.png"
+  },
+  {
+    "name": "eggs",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/eggs.png"
+  },
+  {
+    "name": "fish",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/fish.png"
+  },
+  {
+    "name": "flour",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859045/product_cat_img/flour.png"
+  },
+  {
+    "name": "fruits",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/fruits.png"
+  },
+  {
+    "name": "meat",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859047/product_cat_img/meat.png"
+  },
+  {
+    "name": "mushrooms",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/mushrooms.png"
+  },
+  {
+    "name": "nuts",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859044/product_cat_img/nuts.png"
+  },
+  {
+    "name": "oils and fats",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859047/product_cat_img/fats.png"
+  },
+  {
+    "name": "poppy",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859045/product_cat_img/poppy.png"
+  },
+  {
+    "name": "sausage",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859047/product_cat_img/sausage.png"
+  },
+  {
+    "name": "seeds",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859045/product_cat_img/seeds.png"
+  },
+  {
+    "name": "sesame",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859048/product_cat_img/sesame.png"
+  },
+  {
+    "name": "soft drinks",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859046/product_cat_img/drinks.png"
+  },
+  {
+    "name": "vegetables and herbs",
+    "link": "https://res.cloudinary.com/df9nqdiv6/image/upload/v1710859047/product_cat_img/vegetables.png"
+  }
+]
