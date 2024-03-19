@@ -3,8 +3,8 @@ const fs = require("fs/promises");
 
 const categoriesPath = path.join(
   __dirname,
-  // "../../resources/productsCategories.json"
-  "../../resources/productsCatLink.json"
+  "../../resources/productsCategories.json"
+  // "../../resources/productsCatLink.json"
 );
 
 const getProductsCategories = async (req, res) => {
