@@ -55,6 +55,9 @@ const googleRedirect = async (req, res) => {
   const user = await User.findOne({ UserEmail });
 
   console.log("user", user);
+  console.log("UserEmail", UserEmail);
+  console.log("UserName", UserName);
+
 
   if (user) {
     const token = jwt.sign({ id: user.id }, JWT_SECRET, {
