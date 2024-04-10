@@ -44,6 +44,9 @@ const googleRedirect = async (req, res) => {
   const UserEmail = userData.data.email;
   const UserName = userData.data.name;
 
+  console.log("UserEmail", UserEmail);
+  console.log("UserName", UserName);
+
   function generateRandomPassword(length) {
     const charset =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -55,8 +58,7 @@ const googleRedirect = async (req, res) => {
   const user = await User.findOne({ UserEmail });
 
   console.log("user", user);
-  console.log("UserEmail", UserEmail);
-  console.log("UserName", UserName);
+
 
 
   if (user) {
