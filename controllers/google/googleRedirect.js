@@ -19,6 +19,8 @@ const googleRedirect = async (req, res) => {
   const urlParams = queryString.parse(urlObj.search);
   const code = urlParams["?code"];
 
+  console.log("GOOGLE WORK");
+
   const tokenData = await axios({
     url: `https://oauth2.googleapis.com/token`,
     method: "post",
@@ -41,6 +43,9 @@ const googleRedirect = async (req, res) => {
 
   const UserEmail = userData.data.email;
   const UserName = userData.data.name;
+
+  console.log("UserEmail", UserEmail);
+  console.log("UserName", UserName);
 
   function generateRandomPassword(length) {
     const charset =
