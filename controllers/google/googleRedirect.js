@@ -1,6 +1,6 @@
 const axios = require("axios");
 const queryString = require("querystring");
-const User = require("../../models");
+const { User } = require("../../models");
 const jwt = require("jsonwebtoken");
 const sendEmail = require("../../helpers/sendEmail");
 const bcrypt = require("bcryptjs");
@@ -50,70 +50,61 @@ const googleRedirect = async (req, res) => {
     ).join("");
   }
 
-  const user = await User.findOne({ UserEmail });
+  const user = await User.findOne({ email: UserEmail });
 
-  console.log("user", user);
+  if (!user) {
+    try {
+      const randomPassword = generateRandomPassword(10);
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(randomPassword, salt);
 
-  if (user) {
+      await User.create({
+        userName: UserName,
+        email: UserEmail,
+        password: hashedPassword,
+        userMetrics: false
+      });
+
+      const registeredUser = await User.findOne({ email: UserEmail });
+
+      console.log("registeredUser", registeredUser);
+
+      const token = jwt.sign({ id: registeredUser.id }, JWT_SECRET, {
+        expiresIn: "1d"
+      });
+
+      const userId = await User.findByIdAndUpdate(
+        registeredUser.id,
+        {
+          token,
+          verify: true
+        },
+        { new: true }
+      );
+
+      sendEmail(UserEmail, UserName);
+
+      return res.redirect(
+        `${FRONTEND_URL}?email=${registeredUser.email}&accessToken=${token}`
+      );
+    } catch (error) {
+      error = error.message;
+      // if (error.message.includes('E11000') || error.message.code === 11000) {
+      // 	throw HttpError(409, 'Email in use')
+      // }
+      throw error;
+    }
+  } else {
     const token = jwt.sign({ id: user.id }, JWT_SECRET, {
       expiresIn: "1d"
     });
 
     await User.findByIdAndUpdate(user.id, { token }, { new: true });
 
-    // res.status(200).json({
-    // 	token,
-    // 	email,
-    // })
-
     return res.redirect(
       `${FRONTEND_URL}?email=${user.email}&accessToken=${token}`
     );
   }
-
-  try {
-    const randomPassword = generateRandomPassword(10);
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(randomPassword, salt);
-
-    await User.create({
-      userName: UserName,
-      email: UserEmail,
-      password: hashedPassword,
-      userMetrics: false
-    });
-
-    const registeredUser = await User.findOne({ UserEmail });
-
-    console.log("registeredUser", registeredUser);
-
-    const token = jwt.sign({ id: registeredUser.id }, JWT_SECRET, {
-      expiresIn: "1d"
-    });
-
-    const userId = await User.findByIdAndUpdate(
-      registeredUser.id,
-      {
-        token,
-        verify: true
-      },
-      { new: true }
-    );
-
-    sendEmail(UserEmail, UserName);
-
-    return res.redirect(
-      `${FRONTEND_URL}?email=${registeredUser.email}&accessToken=${token}`
-    );
-  } catch (error) {
-    error = error.message;
-    // if (error.message.includes('E11000') || error.message.code === 11000) {
-    // 	throw HttpError(409, 'Email in use')
-    // }
-    throw error;
-  }
-
-  // return res.redirect(`${FRONTEND_URL}?email=${userData.data.email}`)
 };
 
 module.exports = googleRedirect;
