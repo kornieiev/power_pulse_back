@@ -90,7 +90,7 @@ const googleRedirect = async (req, res) => {
       sendEmail(UserEmail, UserName);
 
       return res.redirect(
-        `${FRONTEND_URL}?email=${registeredUser.email}&accessToken=${token}`
+        `http://localhost:5173/PowerPulseTeamPoject/?email=${registeredUser.email}&accessToken=${token}`
       );
     } catch (error) {
       error = error.message;
@@ -107,7 +107,7 @@ const googleRedirect = async (req, res) => {
     await User.findByIdAndUpdate(user.id, { token }, { new: true });
 
     return res.redirect(
-      `${FRONTEND_URL}?email=${user.email}&accessToken=${token}`
+      `http://localhost:5173/PowerPulseTeamPoject/?email=${user.email}&accessToken=${token}`
     );
   }
 };
