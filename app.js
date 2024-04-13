@@ -1,5 +1,4 @@
 const express = require("express");
-// const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -39,16 +38,6 @@ app.use("/products", productsRouter);
 app.use("/exercises", exerciseRouters);
 app.use("/statistics", statisticsRouters);
 
-// // Обслуживание статических файлов из корневой директории проекта
-// app.use(express.static(path.join(__dirname, "..")));
-
-// // Маршрут для обслуживания файла link.html
-// app.use("/link", (req, res) => {
-//   res.sendFile(path.join(__dirname, "link.html"));
-// });
-// console.log(__dirname);
-
-// ...............................
 app.use("/auth", googleOAUTH);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
